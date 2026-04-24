@@ -2,13 +2,116 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>تمغربيت</title>
+  <title>تمغربيت العقارات</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0f14;
+      color: white;
+      text-align: center;
+    }
+
+    .hero {
+      height: 100vh;
+      background: url('hero.png') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.5);
+      background-blend-mode: darken;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    .buttons {
+      margin-top: 25px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 14px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .whatsapp {
+      background: #25D366;
+      color: white;
+    }
+
+    .phone {
+      background: #1f2a36;
+      color: white;
+    }
+
+    .linktree {
+      background: #e0b45c;
+      color: black;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    .contact {
+      margin-top: 30px;
+      font-size: 16px;
+      opacity: 0.9;
+    }
+  </style>
 </head>
 
-<body style="margin:0; background:black; display:flex; justify-content:center; align-items:center; height:100vh;">
+<body>
 
-  <img src="hero.png" style="width:100%; max-width:1200px;" />
+  <div class="hero">
+
+    <h1>تمغربيت</h1>
+
+    <p>
+      تحليل عقاري ذكي يساعدك تختار العقار المناسب لك قبل الشراء<br>
+      موقع عقاري شامل برؤية مختلفة
+    </p>
+
+    <div class="buttons">
+      <a class="btn whatsapp" href="https://wa.me/212649989742" target="_blank">
+        واتساب
+      </a>
+
+      <a class="btn phone" href="tel:+212649989742">
+        اتصال مباشر
+      </a>
+
+      <a class="btn linktree" href="https://linktr.ee/Tamghrabayt" target="_blank">
+        جميع الروابط
+      </a>
+    </div>
+
+    <div class="contact">
+      للاستفسار أو الزيارة:<br>
+      📞 +212 649 989 742
+    </div>
+
+  </div>
 
 </body>
 </html>
