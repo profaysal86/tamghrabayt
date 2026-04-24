@@ -1,82 +1,95 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>تمغربيت العقارات</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تمغربيت | Tamghrabayt</title>
 
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: Arial, sans-serif;
-      background: #0b0f14;
+    }
+
+    body {
       color: white;
-      text-align: center;
     }
 
     .hero {
       height: 100vh;
       background: url('hero.png') center/cover no-repeat;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
       padding: 20px;
-      background-color: rgba(0,0,0,0.5);
-      background-blend-mode: darken;
+      position: relative;
+    }
+
+    /* Overlay باش تبان الكتابة */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
     }
 
     h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
+      font-size: 40px;
+      margin-bottom: 15px;
     }
 
     p {
       font-size: 18px;
-      max-width: 600px;
+      margin-bottom: 30px;
       line-height: 1.6;
     }
 
     .buttons {
-      margin-top: 25px;
       display: flex;
       gap: 15px;
-      flex-wrap: wrap;
       justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
     }
 
     .btn {
       padding: 14px 22px;
       border-radius: 8px;
       text-decoration: none;
-      font-size: 16px;
+      color: white;
       font-weight: bold;
       transition: 0.3s;
     }
 
     .whatsapp {
       background: #25D366;
-      color: white;
     }
 
-    .phone {
-      background: #1f2a36;
-      color: white;
+    .call {
+      background: #3b82f6;
     }
 
-    .linktree {
-      background: #e0b45c;
+    .links {
+      background: #facc15;
       color: black;
     }
 
     .btn:hover {
-      opacity: 0.85;
+      opacity: 0.8;
     }
 
     .contact {
-      margin-top: 30px;
       font-size: 16px;
-      opacity: 0.9;
+      margin-top: 10px;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -84,33 +97,27 @@
 <body>
 
   <div class="hero">
+    <div class="content">
 
-    <h1>تمغربيت</h1>
+      <h1>تمغربيت</h1>
 
-    <p>
-      تحليل عقاري ذكي يساعدك تختار العقار المناسب لك قبل الشراء<br>
-      موقع عقاري شامل برؤية مختلفة
-    </p>
+      <p>
+        تحليل عقاري ذكي يساعدك تختار العقار المناسب لك قبل الشراء<br>
+        موقع عقاري شامل برؤية مختلفة
+      </p>
 
-    <div class="buttons">
-      <a class="btn whatsapp" href="https://wa.me/212649989742" target="_blank">
-        واتساب
-      </a>
+      <div class="buttons">
+        <a href="https://wa.me/212649989742" target="_blank" class="btn whatsapp">واتساب</a>
+        <a href="tel:+212649989742" class="btn call">اتصال مباشر</a>
+        <a href="https://linktr.ee/Tamghrabayt" target="_blank" class="btn links">جميع الروابط</a>
+      </div>
 
-      <a class="btn phone" href="tel:+212649989742">
-        اتصال مباشر
-      </a>
+      <div class="contact">
+        للاستفسار أو الزيارة:<br>
+        📞 <strong>+212 649 989 742</strong>
+      </div>
 
-      <a class="btn linktree" href="https://linktr.ee/Tamghrabayt" target="_blank">
-        جميع الروابط
-      </a>
     </div>
-
-    <div class="contact">
-      للاستفسار أو الزيارة:<br>
-      📞 +212 649 989 742
-    </div>
-
   </div>
 
 </body>
