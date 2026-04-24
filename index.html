@@ -1,124 +1,177 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>تمغربيت | Tamghrabayt</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<title>تمغربيت - موقع يفهم احتياجاتك العقارية</title>
 
-    body {
-      color: white;
-    }
+<style>
+body {
+  font-family: Arial;
+  background: #0b1120;
+  color: white;
+  margin: 0;
+}
 
-    .hero {
-      height: 100vh;
-      background: url('hero.png') center/cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-      position: relative;
-    }
+/* HEADER */
+header {
+  padding: 15px 30px;
+  background: #060d1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    /* Overlay باش تبان الكتابة */
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.65);
-    }
+.logo {
+  color: gold;
+  font-weight: bold;
+}
 
-    .content {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
-    }
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
 
-    h1 {
-      font-size: 40px;
-      margin-bottom: 15px;
-    }
+.hero h1 {
+  font-size: 28px;
+}
 
-    p {
-      font-size: 18px;
-      margin-bottom: 30px;
-      line-height: 1.6;
-    }
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 5px;
+}
 
-    .buttons {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 25px;
-    }
+.btn-whatsapp { background: #25D366; color: white; }
+.btn-call { background: gold; color: black; }
 
-    .btn {
-      padding: 14px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+/* SEARCH */
+.search {
+  background: #111827;
+  padding: 20px;
+  text-align: center;
+}
 
-    .whatsapp {
-      background: #25D366;
-    }
+select, button {
+  padding: 10px;
+  margin: 5px;
+}
 
-    .call {
-      background: #3b82f6;
-    }
+/* CARDS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 20px;
+  padding: 20px;
+}
 
-    .links {
-      background: #facc15;
-      color: black;
-    }
+.card {
+  background: #1f2937;
+  padding: 15px;
+  border-radius: 10px;
+}
 
-    .btn:hover {
-      opacity: 0.8;
-    }
+.card h3 { margin: 10px 0; }
 
-    .contact {
-      font-size: 16px;
-      margin-top: 10px;
-      line-height: 1.6;
-    }
-  </style>
+.price { color: gold; }
+
+.tag {
+  font-size: 12px;
+  background: rgba(255,215,0,0.2);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* FLOAT BUTTON */
+.float-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #25D366;
+  padding: 12px 15px;
+  border-radius: 50px;
+  color: white;
+  text-decoration: none;
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="hero">
-    <div class="content">
+<header>
+  <div class="logo">تمغربيت</div>
+</header>
 
-      <h1>تمغربيت</h1>
+<section class="hero">
+  <h1>موقع يفهم احتياجاتك العقارية قبل ما تختار</h1>
+  <p>نحللو السوق ونقترحو عليك الأفضل</p>
 
-      <p>
-        تحليل عقاري ذكي يساعدك تختار العقار المناسب لك قبل الشراء<br>
-        موقع عقاري شامل برؤية مختلفة
-      </p>
+  <a href="https://wa.me/212649989742" class="btn btn-whatsapp">واتساب</a>
+  <a href="tel:+212649989742" class="btn btn-call">اتصال</a>
+</section>
 
-      <div class="buttons">
-        <a href="https://wa.me/212649989742" target="_blank" class="btn whatsapp">واتساب</a>
-        <a href="tel:+212649989742" class="btn call">اتصال مباشر</a>
-        <a href="https://linktr.ee/Tamghrabayt" target="_blank" class="btn links">جميع الروابط</a>
-      </div>
+<section class="search">
+  <select id="type">
+    <option value="">نوع العقار</option>
+    <option value="شقة">شقة</option>
+    <option value="فيلا">فيلا</option>
+  </select>
 
-      <div class="contact">
-        للاستفسار أو الزيارة:<br>
-        📞 <strong>+212 649 989 742</strong>
-      </div>
+  <select id="price">
+    <option value="">الثمن</option>
+    <option value="low">أقل من 1M</option>
+    <option value="high">أكثر من 1M</option>
+  </select>
 
-    </div>
+  <button onclick="filter()">بحث ذكي</button>
+</section>
+
+<section class="grid" id="properties">
+
+  <div class="card" data-type="شقة" data-price="low">
+    <span class="tag">🤖 تحليل تمغربيت</span>
+    <h3>شقة في القنيطرة</h3>
+    <p class="price">780,000 درهم</p>
+    <a href="https://wa.me/212649989742" class="btn btn-whatsapp">تواصل</a>
   </div>
+
+  <div class="card" data-type="فيلا" data-price="high">
+    <span class="tag">🤖 تحليل تمغربيت</span>
+    <h3>فيلا راقية</h3>
+    <p class="price">2,400,000 درهم</p>
+    <a href="https://wa.me/212649989742" class="btn btn-whatsapp">تواصل</a>
+  </div>
+
+</section>
+
+<a class="float-whatsapp" href="https://wa.me/212649989742">💬</a>
+
+<script>
+
+function filter() {
+  let type = document.getElementById("type").value;
+  let price = document.getElementById("price").value;
+
+  let cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    let show = true;
+
+    if (type && card.dataset.type !== type) show = false;
+    if (price && card.dataset.price !== price) show = false;
+
+    card.style.display = show ? "block" : "none";
+  });
+
+  alert("تم اقتراح أفضل العقارات حسب اختيارك");
+}
+
+</script>
 
 </body>
 </html>
