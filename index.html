@@ -2,259 +2,187 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>تمغربيت - تفاعلي</title>
+  <title>تمغربيت - العقار الذكي</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --primary-bg: #e4ddd3; /* لون خلفية الصورة الأصلية */
-      --text-color: #333;
-      --accent-color: #3158c3; /* لون الشعار الأزرق */
-      --gold-color: #c9a55c; /* لون النص الذهبي */
+      --gold: #c9a55c;
+      --navy: #1a2a44;
+      --white-glass: rgba(255, 255, 255, 0.15);
     }
 
-    body {
+    body, html {
       margin: 0;
       padding: 0;
+      height: 100%;
       font-family: 'Cairo', sans-serif;
-      background-color: var(--primary-bg);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      overflow: hidden; /* لمنع التمرير أثناء الحركة */
-    }
-
-    /* حاوية العرض الرئيسية (تحاكي إطار المتصفح) */
-    .view-container {
-      width: 1000px;
-      height: 562px; /* أبعاد الصورة الأصلية */
-      background: url('https://i.imgur.com/vHqYfOQ.png') no-repeat center center;
-      background-size: cover;
-      position: relative;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       overflow: hidden;
     }
 
-    /* حاوية المحتوى التفاعلي (فوق الخلفية) */
-    .dynamic-content {
-      position: absolute;
+    /* الخلفية الديناميكية من Unsplash للعقارات الحديثة */
+    .hero-bg {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(228, 221, 211, 0.9); /* طبقة خلفية شفافة للحركة */
+      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      transition: transform 10s ease-out; /* حركة بطيئة للخلفية */
+      z-index: -1;
+    }
+
+    body:hover .hero-bg {
+      transform: scale(1.1); /* تأثير زووم عند حركة الماوس */
+    }
+
+    .main-wrapper {
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: var(--text-color);
-      opacity: 0;
-      transition: opacity 1s ease-out;
-      z-index: 2; /* فوق الخلفية */
+      height: 100vh;
+      background: radial-gradient(circle, transparent, rgba(0,0,0,0.5));
     }
 
-    .loaded .dynamic-content {
-      opacity: 1;
-    }
-
-    /* حاوية النص الذهبي والخدمات (على اليسار) */
-    .text-and-services {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end; /* لجهة اليمين بسبب dir=rtl */
-      width: 400px;
-      margin-right: 550px; /* لتجنب تغطية الرجل */
-      opacity: 0;
-      transform: translateX(50px);
-      transition: 0.8s 1.2s ease-out;
-    }
-
-    .loaded .text-and-services {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    h1 {
-      font-size: 36px;
-      color: var(--gold-color);
-      margin: 0;
-      font-weight: 700;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: var(--text-color);
-      margin-bottom: 20px;
-      opacity: 0.8;
-    }
-
-    .box {
-      width: 100%;
-      background: rgba(255,255,255,0.8);
-      padding: 15px;
-      border-radius: 10px;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .box p {
-      margin: 0 0 10px 0;
-      font-size: 13px;
-    }
-
-    a {
-      display: block;
-      margin: 6px 0;
-      padding: 8px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 13px;
-      color: white;
-      transition: 0.3s;
+    /* الحاوية الزجاجية */
+    .glass-card {
+      background: var(--white-glass);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 40px;
       text-align: center;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      max-width: 450px;
+      width: 90%;
+      animation: fadeIn 1.5s ease-in-out;
     }
 
-    .tel { background: #007BFF; }
-    .whatsapp { background: #25D366; }
-    .linktree { background: var(--gold-color); color: #000; font-weight: bold; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    a:hover { transform: scale(1.05); }
+    .logo-placeholder {
+      font-size: 50px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 5px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
 
-    /* حاوية الرجل والشعار والعلم (في المنتصف، متحركة) */
-    .man-flag-logo-group {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 50%; /* نصف الشاشة الأيمن */
-      height: 100%;
+    .status-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: #000;
+      padding: 5px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .service-list {
+      list-style: none;
+      padding: 0;
+      margin: 25px 0;
+      text-align: right;
+    }
+
+    .service-list li {
+      color: #fff;
+      margin-bottom: 12px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .service-list li::before {
+      content: '✓';
+      color: var(--gold);
+      margin-left: 10px;
+      font-weight: bold;
+    }
+
+    .btn-group {
       display: flex;
       flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: all 0.3s;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding-top: 10px;
-      transition: 1s ease-in-out;
+      gap: 10px;
+      color: #fff;
     }
 
-    /* حالة البداية: عناصر غير مرئية */
-    .man-photo, .flag, .logo, .coming-soon-text {
-      opacity: 0;
+    .btn-whatsapp { background: #25D366; }
+    .btn-tel { background: #007BFF; }
+    .btn-links { border: 2px solid var(--gold); color: var(--gold); }
+
+    .btn:hover {
+      transform: scale(1.03);
+      filter: brightness(1.1);
     }
 
-    /* حركة الشعار */
-    .logo {
-      width: 80px;
-      height: 80px;
-      background: url('https://i.imgur.com/vHqYfOQ.png') no-repeat;
-      background-size: 1250% 1250%; /* نسبة تقريبية من حجم الصورة */
-      background-position: calc(-1250% * 0.44) calc(-1250% * 0.08); /* مكان الشعار */
-      margin-bottom: 10px;
-      transform: translateY(-20px);
-      transition: 0.8s 0.3s ease-out;
+    .footer-text {
+      margin-top: 25px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
     }
-    .loaded .logo { opacity: 1; transform: translateY(0); }
-
-    /* حركة كلمة "قريباً" */
-    .coming-soon-text {
-      position: absolute;
-      top: 250px;
-      right: 280px;
-      font-size: 80px;
-      color: white;
-      font-weight: 700;
-      transform: scale(0.5);
-      transition: 0.8s 0.6s ease-out;
-    }
-    .loaded .coming-soon-text { opacity: 1; transform: scale(1); }
-
-    /* حركة صورة الرجل والعلم (كقطعة واحدة) */
-    .man-photo {
-      width: 420px;
-      height: 520px;
-      background: url('https://i.imgur.com/vHqYfOQ.png') no-repeat;
-      background-size: 238% auto;
-      background-position: -460px bottom; /* مكان الرجل والعلم */
-      position: relative;
-      transform: translateY(100px);
-      transition: 1s 0.9s ease-out;
-    }
-    .loaded .man-photo { opacity: 1; transform: translateY(0); }
-
-    /* حاوية المربعات الشبكية (في الخلفية) */
-    .grid-container {
-      position: absolute;
-      right: 180px;
-      bottom: 20px;
-      width: 250px;
-      height: 180px;
-      opacity: 0;
-      transition: 1s 1.5s ease-out;
-    }
-    .loaded .grid-container { opacity: 0.6; }
-    .grid-icon { width: 40px; height: 40px; border: 1px solid white; position: absolute; }
-    /* يمكن إضافة تمثيل للمربعات هنا باستخدام الـ CSS */
-
-    /* شريط التحميل الأولي (اختياري) */
-    .loader-bar {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      height: 4px;
-      background: #ccc;
-      border-radius: 2px;
-      overflow: hidden;
-      z-index: 10;
-    }
-    .loader-progress {
-      width: 0%;
-      height: 100%;
-      background: var(--gold-color);
-      animation: fillBar 1.2s forwards;
-    }
-    @keyframes fillBar { 100% { width: 100%; } }
-    .loaded .loader-bar { display: none; }
-
   </style>
 </head>
 <body>
 
-  <div class="loader-bar"><div class="loader-progress"></div></div>
+  <div class="hero-bg"></div>
 
-  <div class="view-container" id="mainView">
-    <div class="dynamic-content">
+  <div class="main-wrapper">
+    <div class="glass-card">
+      <div class="logo-placeholder">تمغربيت</div>
+      <div class="status-tag">قريباً في القنيطرة</div>
       
-      <div class="man-flag-logo-group">
-        <div class="logo"></div>
-        <div class="coming-soon-text">قريباً</div>
-        <div class="man-photo"></div>
+      <p style="color: #eee;">منصة تحليل العقار الأكثر دقة</p>
+
+      <ul class="service-list">
+        <li>تحليل مبني على الأرقام الحقيقية</li>
+        <li>معطيات دقيقة من قلب السوق</li>
+        <li>قرارات عقارية واضحة ومدروسة</li>
+      </ul>
+
+      <div class="btn-group">
+        <a href="https://wa.me/212649989742" class="btn btn-whatsapp">واتساب مباشر</a>
+        <a href="tel:+212649989742" class="btn btn-tel">اتصل بنا الآن</a>
+        <a href="https://linktr.ee/Tamghrabayt" class="btn btn-links">كل الروابط</a>
       </div>
 
-      <div class="text-and-services">
-        <h1>تمغربيت</h1>
-        <div class="subtitle">الموقع قريبا إن شاء الله</div>
-
-        <div class="box">
-          <p>للاستفسار أو الزيارة تواصل معنا على:</p>
-          <a class="tel" href="tel:+212649989742">📞 اتصال مباشر</a>
-          <a class="whatsapp" href="https://wa.me/212649989742" target="_blank">💬 واتساب</a>
-          <a class="linktree" href="https://linktr.ee/Tamghrabayt" target="_blank">📍 جميع الروابط</a>
-        </div>
+      <div class="footer-text">
+        نطور التجربة العقارية الرقمية بالمغرب
       </div>
-
     </div>
   </div>
 
   <script>
-    // عند تحميل الصفحة، ابدأ الحركة
-    window.addEventListener('load', function() {
-      // بعد وقت قصير من التحميل لإظهار شريط التحميل
-      setTimeout(function() {
-        document.getElementById('mainView').classList.add('loaded');
-      }, 1300); // 1.3 ثانية لمشاهدة شريط التحميل
-    });
+    // تغيير الصورة عشوائياً عند كل دخول (اختياري)
+    const images = [
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c',
+      'https://images.unsplash.com/photo-1600607687940-47a0028d95c5'
+    ];
+    
+    // لجعل الموقع أكثر تفاعلاً، يمكننا تغيير الخلفية برمجياً
+    // document.querySelector('.hero-bg').style.backgroundImage = `url(${images[Math.floor(Math.random()*images.length)]}?auto=format&fit=crop&w=1920&q=80)`;
   </script>
 
 </body>
