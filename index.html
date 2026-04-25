@@ -1,261 +1,1177 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tamghrabayt - عقارك في القنيطرة والمغرب بثقة</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <style>
-    body { font-family: 'Segoe UI', system-ui, sans-serif; }
-    .hero-bg {
-      background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://picsum.photos/id/1015/2000/1200');
-      background-size: cover;
-      background-position: center;
-    }
-    .masonry {
-      column-count: 1;
-      column-gap: 1.5rem;
-    }
-    @media (min-width: 768px) {
-      .masonry { column-count: 2; }
-    }
-    @media (min-width: 1024px) {
-      .masonry { column-count: 3; }
-    }
-    .masonry-item {
-      break-inside: avoid;
-      margin-bottom: 1.5rem;
-    }
-    .gold-accent { color: #d4af37; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تمغربيت — العقار بثقة واطمئنان</title>
+<meta name="description" content="فيصل من تمغربيت — خبير عقاري في القنيطرة والمغرب. بيع، شراء، استثمار بثقة واطمئنان.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Tajawal:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --gold: #B8963E;
+  --gold-lt: #D4AF6A;
+  --gold-pale: #F0E2C0;
+  --dark: #0A0A08;
+  --dark2: #111110;
+  --dark3: #181816;
+  --dark4: #1F1F1C;
+  --cream: #F5F0E8;
+  --cream2: #EDE5D6;
+  --sand: #C8B99A;
+  --muted: #6B6A64;
+  --muted2: #4A4945;
+  --white: #FDFCF9;
+  --ff-display: 'Cormorant Garamond', Georgia, serif;
+  --ff-body: 'Tajawal', sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--ff-body);
+  background: var(--dark);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ─── CUSTOM CURSOR ─────────────────────────────────────────── */
+#cur-dot {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, background 0.3s;
+}
+#cur-ring {
+  width: 40px; height: 40px;
+  border: 1px solid rgba(184,150,62,0.5);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s, width 0.3s, height 0.3s, border-color 0.3s;
+}
+body.hover-active #cur-dot { transform: translate(-50%,-50%) scale(3); background: var(--gold-lt); }
+body.hover-active #cur-ring { width: 60px; height: 60px; border-color: rgba(184,150,62,0.25); }
+
+/* ─── NAV ─────────────────────────────────────────────────── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 64px;
+  height: 80px;
+  transition: background 0.5s, border-color 0.5s;
+  border-bottom: 1px solid transparent;
+}
+#nav.scrolled {
+  background: rgba(10,10,8,0.92);
+  backdrop-filter: blur(24px);
+  border-color: rgba(184,150,62,0.12);
+}
+.nav-logo {
+  display: flex; flex-direction: column;
+  gap: 1px;
+}
+.nav-logo-ar {
+  font-family: var(--ff-display);
+  font-size: 22px; font-weight: 700;
+  color: var(--gold); letter-spacing: 1px;
+}
+.nav-logo-en {
+  font-size: 9px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--muted);
+  font-weight: 300;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 48px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px; font-weight: 300;
+  letter-spacing: 2px; color: var(--muted);
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 50%; right: 50%;
+  height: 1px; background: var(--gold);
+  transition: left 0.3s var(--ease-out), right 0.3s var(--ease-out);
+}
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { left: 0; right: 0; }
+.nav-cta {
+  display: flex; align-items: center; gap: 10px;
+  background: transparent;
+  border: 1px solid rgba(184,150,62,0.4);
+  color: var(--gold-lt);
+  padding: 10px 28px;
+  font-size: 13px; font-weight: 500; letter-spacing: 2px;
+  transition: all 0.3s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+
+/* ─── HERO ─────────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left {
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 120px 64px 80px;
+  position: relative; z-index: 2;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-bottom: 40px;
+}
+.eyebrow-line {
+  width: 40px; height: 1px; background: var(--gold);
+}
+.eyebrow-text {
+  font-size: 11px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--gold);
+  font-weight: 400;
+}
+.hero-h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(56px, 5.5vw, 96px);
+  line-height: 1.02;
+  font-weight: 600;
+  margin-bottom: 32px;
+  color: var(--white);
+}
+.hero-h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero-desc {
+  font-size: 16px; font-weight: 300;
+  line-height: 1.9; color: var(--muted);
+  max-width: 440px;
+  margin-bottom: 56px;
+}
+.hero-actions { display: flex; gap: 16px; align-items: center; }
+.btn-gold {
+  background: var(--gold);
+  color: var(--dark);
+  padding: 15px 36px;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 2px;
+  transition: all 0.3s var(--ease-out);
+  display: inline-block;
+}
+.btn-gold:hover { background: var(--gold-lt); transform: translateY(-3px); }
+.btn-outline {
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--muted);
+  padding: 15px 36px;
+  font-size: 13px; font-weight: 300;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  display: inline-block;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+.hero-stats-bar {
+  display: flex; gap: 0;
+  margin-top: 80px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 40px;
+}
+.hstat {
+  flex: 1;
+  padding-left: 32px;
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+.hstat:first-child { padding-right: 32px; padding-left: 0; border-left: none; }
+.hstat-num {
+  font-family: var(--ff-display);
+  font-size: 48px; font-weight: 600;
+  color: var(--gold); line-height: 1;
+  margin-bottom: 6px;
+}
+.hstat-label {
+  font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--muted2);
+  font-weight: 300;
+}
+
+/* HERO RIGHT — visual panel */
+.hero-right {
+  position: relative;
+  overflow: hidden;
+}
+.hero-visual {
+  position: absolute; inset: 0;
+  background: var(--dark2);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-geo {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(184,150,62,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,150,62,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-geo-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, var(--dark2) 80%);
+}
+.hero-center-el {
+  position: relative; z-index: 2;
+  text-align: center;
+}
+.hero-circle-outer {
+  width: 320px; height: 320px;
+  border: 1px solid rgba(184,150,62,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  animation: rotateSlow 30s linear infinite;
+}
+.hero-circle-outer::before {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: 50%;
+  border: 1px dashed rgba(184,150,62,0.1);
+}
+@keyframes rotateSlow { to { transform: rotate(360deg); } }
+.hero-circle-inner {
+  width: 220px; height: 220px;
+  border: 1px solid rgba(184,150,62,0.3);
+  border-radius: 50%;
+  background: rgba(184,150,62,0.04);
+  display: flex; align-items: center; justify-content: center;
+  animation: rotateSlow 20s linear infinite reverse;
+}
+.hero-icon-main {
+  font-size: 72px;
+  animation: rotateSlow 20s linear infinite;
+  filter: drop-shadow(0 0 30px rgba(184,150,62,0.3));
+}
+.orbit-dot {
+  position: absolute;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+.orbit-dot:nth-child(1) { top: -4px; left: 50%; transform: translateX(-50%); }
+.orbit-dot:nth-child(2) { bottom: -4px; left: 50%; transform: translateX(-50%); }
+.orbit-dot:nth-child(3) { right: -4px; top: 50%; transform: translateY(-50%); }
+.orbit-dot:nth-child(4) { left: -4px; top: 50%; transform: translateY(-50%); }
+.hero-tagline-right {
+  position: absolute;
+  right: 40px; bottom: 80px;
+  text-align: right;
+  z-index: 10;
+  writing-mode: vertical-rl;
+  color: var(--muted2);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  z-index: 10;
+}
+.scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100%{opacity:1;transform:scaleY(1)} 50%{opacity:0.3;transform:scaleY(0.6)} }
+.scroll-text { font-size: 9px; letter-spacing: 3px; color: var(--muted2); text-transform: uppercase; }
+
+/* ─── TICKER ─────────────────────────────────────────────────── */
+#ticker {
+  border-top: 1px solid rgba(184,150,62,0.12);
+  border-bottom: 1px solid rgba(184,150,62,0.12);
+  overflow: hidden;
+  padding: 14px 0;
+  background: rgba(184,150,62,0.02);
+}
+.ticker-track {
+  display: flex; gap: 0;
+  animation: ticker 22s linear infinite;
+  width: max-content;
+}
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker-item {
+  display: flex; align-items: center; gap: 24px;
+  padding: 0 40px;
+  font-size: 11px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--muted2);
+  white-space: nowrap;
+  border-right: 1px solid rgba(184,150,62,0.1);
+}
+.ticker-item span { color: var(--gold); font-size: 16px; }
+
+/* ─── SECTION COMMONS ─────────────────────────────────────────── */
+.section-eyebrow {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 20px;
+}
+.sep-line { width: 32px; height: 1px; background: var(--gold); }
+.section-tag-text {
+  font-size: 10px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--gold);
+}
+.section-h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(40px, 3.5vw, 64px);
+  font-weight: 600; line-height: 1.1;
+  color: var(--white);
+}
+.section-h2 em { font-style: italic; color: var(--gold); }
+
+/* ─── SERVICES ─────────────────────────────────────────────────── */
+#services {
+  padding: 140px 64px;
+  position: relative;
+}
+#services::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184,150,62,0.3), transparent);
+}
+.services-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 80px;
+}
+.services-intro {
+  font-size: 15px; font-weight: 300;
+  line-height: 1.9; color: var(--muted);
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(184,150,62,0.08);
+}
+.svc-card {
+  background: var(--dark2);
+  padding: 52px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s;
+}
+.svc-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-out);
+}
+.svc-card:hover { background: var(--dark3); }
+.svc-card:hover::after { transform: scaleX(1); transform-origin: left; }
+.svc-num {
+  font-family: var(--ff-display);
+  font-size: 80px; font-weight: 600;
+  color: rgba(184,150,62,0.07);
+  line-height: 1;
+  margin-bottom: 28px;
+  transition: color 0.4s;
+}
+.svc-card:hover .svc-num { color: rgba(184,150,62,0.12); }
+.svc-icon-wrap {
+  width: 52px; height: 52px;
+  border: 1px solid rgba(184,150,62,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  margin-bottom: 28px;
+  transition: border-color 0.3s, background 0.3s;
+}
+.svc-card:hover .svc-icon-wrap {
+  border-color: var(--gold);
+  background: rgba(184,150,62,0.06);
+}
+.svc-title {
+  font-family: var(--ff-display);
+  font-size: 22px; font-weight: 600;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.svc-desc {
+  font-size: 14px; font-weight: 300;
+  line-height: 1.9; color: var(--muted);
+}
+
+/* ─── LISTINGS ─────────────────────────────────────────────────── */
+#listings {
+  padding: 0 64px 140px;
+}
+.listings-header {
+  display: flex; align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+}
+.listings-link {
+  font-size: 12px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold);
+  border-bottom: 1px solid rgba(184,150,62,0.3);
+  padding-bottom: 4px;
+  transition: border-color 0.3s;
+}
+.listings-link:hover { border-color: var(--gold); }
+.listings-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+.prop {
+  background: var(--dark2);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s var(--ease-out);
+}
+.prop:hover { transform: translateY(-6px); }
+.prop-main { grid-row: 1 / 3; }
+.prop-visual {
+  height: 260px;
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--dark3);
+}
+.prop-main .prop-visual { height: 400px; }
+.prop-visual-icon { font-size: 80px; opacity: 0.3; }
+.prop-badge {
+  position: absolute; top: 20px; right: 20px;
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  padding: 6px 14px;
+}
+.prop-body { padding: 28px 32px; }
+.prop-loc {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 10px;
+}
+.prop-name {
+  font-family: var(--ff-display);
+  font-size: 22px; font-weight: 600;
+  margin-bottom: 12px; line-height: 1.2;
+}
+.prop-main .prop-name { font-size: 28px; }
+.prop-price {
+  font-family: var(--ff-display);
+  font-size: 26px; color: var(--gold-lt);
+  font-weight: 600; margin-bottom: 20px;
+}
+.prop-specs {
+  display: flex; gap: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.spec-item { font-size: 12px; color: var(--muted); }
+.spec-item strong { color: var(--white); display: block; font-size: 15px; font-weight: 500; margin-bottom: 2px; }
+
+/* CTA CARD */
+.prop-cta {
+  border: 1px dashed rgba(184,150,62,0.25);
+  background: transparent;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 40px 32px;
+  gap: 16px;
+  cursor: none;
+  transition: border-color 0.3s, background 0.3s;
+}
+.prop-cta:hover { border-color: var(--gold); background: rgba(184,150,62,0.04); }
+.prop-cta-icon { font-size: 40px; }
+.prop-cta-title {
+  font-family: var(--ff-display);
+  font-size: 20px; color: var(--gold);
+}
+.prop-cta-sub { font-size: 13px; font-weight: 300; color: var(--muted); }
+
+/* ─── WHY US ─────────────────────────────────────────────────── */
+#why {
+  background: var(--dark2);
+  padding: 140px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.why-bg-text {
+  position: absolute;
+  font-family: var(--ff-display);
+  font-size: 280px; font-weight: 700;
+  color: rgba(184,150,62,0.02);
+  white-space: nowrap;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+  position: relative; z-index: 2;
+}
+.why-list { display: flex; flex-direction: column; gap: 0; }
+.why-item {
+  display: flex; gap: 28px; align-items: flex-start;
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.3s;
+}
+.why-item:first-child { border-top: 1px solid rgba(255,255,255,0.04); }
+.why-item-num {
+  font-family: var(--ff-display);
+  font-size: 36px; font-weight: 600;
+  color: rgba(184,150,62,0.3);
+  min-width: 48px; line-height: 1;
+  transition: color 0.3s;
+}
+.why-item:hover .why-item-num { color: var(--gold); }
+.why-item-title { font-size: 17px; font-weight: 500; margin-bottom: 8px; }
+.why-item-desc { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.8; }
+.why-right { display: flex; flex-direction: column; gap: 28px; }
+.why-quote {
+  border-left: 2px solid var(--gold);
+  padding: 32px 40px;
+  background: rgba(184,150,62,0.04);
+}
+.why-quote-text {
+  font-family: var(--ff-display);
+  font-size: 26px; font-style: italic;
+  color: var(--cream);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.why-quote-author { font-size: 12px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+.why-cta-box {
+  background: var(--gold);
+  padding: 40px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.why-cta-box-title {
+  font-family: var(--ff-display);
+  font-size: 28px; color: var(--dark);
+  font-weight: 600;
+}
+.why-cta-box-sub { font-size: 14px; color: rgba(10,10,8,0.65); font-weight: 300; line-height: 1.7; }
+.btn-dark {
+  background: var(--dark);
+  color: var(--gold);
+  padding: 14px 32px;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2px;
+  display: inline-block;
+  transition: all 0.3s;
+  align-self: flex-start;
+}
+.btn-dark:hover { background: var(--dark2); color: var(--gold-lt); }
+
+/* ─── CONTACT ─────────────────────────────────────────────────── */
+#contact {
+  background: var(--cream);
+  color: var(--dark);
+  padding: 140px 64px;
+  position: relative;
+  overflow: hidden;
+}
+#contact::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.contact-geo {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(184,150,62,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,150,62,0.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.5;
+}
+.contact-inner {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+}
+#contact .section-h2 { color: var(--dark); margin-bottom: 24px; }
+#contact .section-tag-text { color: var(--gold); }
+#contact .sep-line { background: var(--gold); }
+.contact-desc {
+  font-size: 16px; font-weight: 300;
+  line-height: 1.9;
+  color: #555;
+  margin-bottom: 48px;
+  max-width: 400px;
+}
+.contact-cards { display: flex; flex-direction: column; gap: 12px; }
+.contact-card {
+  display: flex; align-items: center; gap: 20px;
+  background: var(--dark);
+  color: var(--white);
+  padding: 22px 28px;
+  transition: all 0.3s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+.contact-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--gold);
+  transform: translateX(100%);
+  transition: transform 0.4s var(--ease-out);
+}
+.contact-card:hover { color: var(--dark); }
+.contact-card:hover::before { transform: translateX(0); }
+.cc-icon, .cc-content { position: relative; z-index: 2; }
+.cc-icon {
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.05);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+.contact-card:hover .cc-icon { background: rgba(10,10,8,0.1); }
+.cc-label {
+  font-size: 9px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 4px; transition: color 0.3s;
+}
+.contact-card:hover .cc-label { color: rgba(10,10,8,0.55); }
+.cc-val { font-size: 15px; font-weight: 500; }
+
+/* FAISAL CARD */
+.faisal-card {
+  background: var(--dark);
+  color: var(--white);
+  padding: 52px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.faisal-card::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 100px; height: 100px;
+  border-bottom: 100px solid transparent;
+  border-right: 100px solid rgba(184,150,62,0.08);
+}
+.faisal-avatar {
+  width: 72px; height: 72px;
+  background: linear-gradient(135deg, var(--gold) 0%, rgba(184,150,62,0.3) 100%);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-display);
+  font-size: 28px; font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 24px;
+}
+.faisal-name {
+  font-family: var(--ff-display);
+  font-size: 32px; font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.faisal-title {
+  font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 28px;
+}
+.faisal-bio {
+  font-size: 14px; font-weight: 300;
+  line-height: 1.9; color: var(--muted);
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.faisal-meta { display: flex; gap: 32px; }
+.fmeta-num {
+  font-family: var(--ff-display);
+  font-size: 32px; color: var(--gold); font-weight: 600; line-height: 1;
+}
+.fmeta-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; margin-top: 4px; }
+
+/* ─── FOOTER ─────────────────────────────────────────────────── */
+#footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(184,150,62,0.08);
+  padding: 48px 64px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+}
+.footer-logo-wrap { display: flex; flex-direction: column; gap: 2px; }
+.footer-logo-ar {
+  font-family: var(--ff-display);
+  font-size: 20px; font-weight: 700; color: var(--gold);
+}
+.footer-logo-sub { font-size: 9px; letter-spacing: 4px; color: var(--muted2); text-transform: uppercase; }
+.footer-links { display: flex; gap: 40px; list-style: none; }
+.footer-links a {
+  font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted2);
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-copy { font-size: 12px; color: var(--muted2); letter-spacing: 1px; }
+
+/* ─── REVEAL ANIMATIONS ─────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  #hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 120px 32px 60px; }
+  nav, #services, #listings, #why, #contact, #footer { padding-left: 32px; padding-right: 32px; }
+  #nav { padding: 0 32px; }
+  .services-grid, .listings-grid { grid-template-columns: 1fr 1fr; }
+  .prop-main { grid-column: 1 / -1; grid-row: auto; }
+  .why-grid, .contact-inner, .services-header { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 640px) {
+  .services-grid, .listings-grid { grid-template-columns: 1fr; }
+  .nav-links, .nav-cta { display: none; }
+  .hero-stats-bar { flex-direction: column; gap: 24px; }
+  #footer { flex-direction: column; gap: 24px; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
+}
+</style>
 </head>
-<body class="bg-[#f8f4ed] text-gray-800">
+<body>
 
-  <!-- Navbar -->
-  <nav class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-emerald-700 rounded-xl flex items-center justify-center text-white font-bold text-2xl">ت</div>
-        <div>
-          <span class="text-2xl font-bold tracking-tight">تمغربيت</span>
-          <p class="text-xs text-gray-500 -mt-1">عقار بثقة</p>
+<!-- CURSOR -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav id="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-ar">تمغربيت</div>
+    <div class="nav-logo-en">Tamghrabayt · Real Estate</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">خدماتنا</a></li>
+    <li><a href="#listings">العقارات</a></li>
+    <li><a href="#why">من نحن</a></li>
+    <li><a href="#contact">تواصل</a></li>
+  </ul>
+  <a href="https://wa.me/+212649989742" class="nav-cta">💬 واتساب</a>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow reveal">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-text">القنيطرة · المغرب · 2025</div>
+    </div>
+    <h1 class="hero-h1 reveal reveal-delay-1">
+      عقارك<br>
+      <em>بثقة</em><br>
+      واطمئنان
+    </h1>
+    <p class="hero-desc reveal reveal-delay-2">
+      فيصل وفريق تمغربيت — نربطك بأفضل الفرص العقارية في القنيطرة والمغرب.
+      سواء كنت تبيع، تشري، أو تستثمر — نكونو معاك في كل خطوة.
+    </p>
+    <div class="hero-actions reveal reveal-delay-3">
+      <a href="https://linktr.ee/Tamghrabayt" class="btn-gold">استكشف العقارات</a>
+      <a href="tel:+212649989742" class="btn-outline">استشارة مجانية</a>
+    </div>
+    <div class="hero-stats-bar reveal reveal-delay-4">
+      <div class="hstat">
+        <div class="hstat-num">500+</div>
+        <div class="hstat-label">عقار تم تسويقه</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">8+</div>
+        <div class="hstat-label">سنوات خبرة</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">98%</div>
+        <div class="hstat-label">رضا العملاء</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-geo"></div>
+      <div class="hero-geo-overlay"></div>
+      <div class="hero-center-el">
+        <div class="hero-circle-outer">
+          <div class="orbit-dot"></div>
+          <div class="orbit-dot"></div>
+          <div class="orbit-dot"></div>
+          <div class="orbit-dot"></div>
+          <div class="hero-circle-inner">
+            <div class="hero-icon-main">🏛️</div>
+          </div>
         </div>
       </div>
-      <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <a href="#" class="hover:text-emerald-700 transition">الرئيسية</a>
-        <a href="#" class="hover:text-emerald-700 transition">عقارات للبيع</a>
-        <a href="#" class="hover:text-emerald-700 transition">استثمار</a>
-        <a href="#" class="hover:text-emerald-700 transition">من نحن</a>
-      </div>
-      <a href="https://wa.me/+212649989742" target="_blank" 
-         class="bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3 rounded-2xl flex items-center gap-2 font-medium transition">
-        <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
-      </a>
+      <div class="hero-tagline-right">Kénitra · Morocco</div>
     </div>
-  </nav>
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <div class="scroll-text">Scroll</div>
+    </div>
+  </div>
+</section>
 
-  <!-- Hero Section -->
-  <header class="hero-bg h-screen flex items-center text-white">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
-        عقارك المثالي في <span class="text-emerald-300">القنيطرة</span><br>والمغرب بثقة تامة
-      </h1>
-      <p class="text-xl md:text-2xl max-w-2xl mx-auto mb-10 opacity-90">
-        صور احترافية • جولات افتراضية • معاملات شفافة • استثمار آمن
+<!-- ═══════════════════ TICKER ═══════════════════ -->
+<div id="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span>◆</span> بيع العقارات</div>
+    <div class="ticker-item"><span>◆</span> شراء الشقق والفيلات</div>
+    <div class="ticker-item"><span>◆</span> الاستثمار العقاري</div>
+    <div class="ticker-item"><span>◆</span> القنيطرة</div>
+    <div class="ticker-item"><span>◆</span> تمغربيت</div>
+    <div class="ticker-item"><span>◆</span> المغرب</div>
+    <div class="ticker-item"><span>◆</span> استشارة مجانية</div>
+    <div class="ticker-item"><span>◆</span> ثقة وشفافية</div>
+    <!-- duplicate for infinite loop -->
+    <div class="ticker-item"><span>◆</span> بيع العقارات</div>
+    <div class="ticker-item"><span>◆</span> شراء الشقق والفيلات</div>
+    <div class="ticker-item"><span>◆</span> الاستثمار العقاري</div>
+    <div class="ticker-item"><span>◆</span> القنيطرة</div>
+    <div class="ticker-item"><span>◆</span> تمغربيت</div>
+    <div class="ticker-item"><span>◆</span> المغرب</div>
+    <div class="ticker-item"><span>◆</span> استشارة مجانية</div>
+    <div class="ticker-item"><span>◆</span> ثقة وشفافية</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SERVICES ═══════════════════ -->
+<section id="services">
+  <div class="services-header">
+    <div class="reveal">
+      <div class="section-eyebrow">
+        <div class="sep-line"></div>
+        <div class="section-tag-text">خدماتنا</div>
+      </div>
+      <h2 class="section-h2">نخدمك في<br><em>كل خطوة</em></h2>
+    </div>
+    <div class="services-intro reveal reveal-delay-2">
+      من البداية للنهاية — نرافقك في رحلة بيع أو شراء أو استثمار عقارك بكل ثقة وراحة.
+      معاملات شفافة، نتائج حقيقية.
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card reveal">
+      <div class="svc-num">01</div>
+      <div class="svc-icon-wrap">🏠</div>
+      <div class="svc-title">بيع وشراء العقارات</div>
+      <div class="svc-desc">نساعدك تبيع أو تشري بأفضل الأسعار وفي أقصر وقت ممكن، مع ضمان الشفافية الكاملة في كل مرحلة.</div>
+    </div>
+    <div class="svc-card reveal reveal-delay-1">
+      <div class="svc-num">02</div>
+      <div class="svc-icon-wrap">📈</div>
+      <div class="svc-title">الاستشارة الاستثمارية</div>
+      <div class="svc-desc">نحللك السوق العقاري ونوجهك نحو أفضل الفرص الاستثمارية بعائد مضمون وأمان تام لرأس مالك.</div>
+    </div>
+    <div class="svc-card reveal reveal-delay-2">
+      <div class="svc-num">03</div>
+      <div class="svc-icon-wrap">📋</div>
+      <div class="svc-title">الوثائق القانونية</div>
+      <div class="svc-desc">نتكفل بجميع الإجراءات والوثائق القانونية حتى تعيش تجربة عقارية بدون أي قلق أو تعقيدات.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ LISTINGS ═══════════════════ -->
+<section id="listings">
+  <div class="listings-header reveal">
+    <div>
+      <div class="section-eyebrow">
+        <div class="sep-line"></div>
+        <div class="section-tag-text">عقارات مميزة</div>
+      </div>
+      <h2 class="section-h2">اختيارات<br><em>استثنائية</em></h2>
+    </div>
+    <a href="https://linktr.ee/Tamghrabayt" class="listings-link">عرض الكل ←</a>
+  </div>
+  <div class="listings-grid">
+    <!-- Main featured -->
+    <div class="prop prop-main reveal">
+      <div class="prop-visual">
+        <div class="prop-visual-icon">🏢</div>
+        <div class="prop-badge">مميز</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-loc">📍 القنيطرة المدينة</div>
+        <div class="prop-name">شقة فاخرة — طابق رابع</div>
+        <div class="prop-price">1,200,000 درهم</div>
+        <div class="prop-specs">
+          <div class="spec-item"><strong>120 م²</strong>المساحة</div>
+          <div class="spec-item"><strong>3</strong>غرف نوم</div>
+          <div class="spec-item"><strong>2</strong>حمام</div>
+          <div class="spec-item"><strong>1</strong>موقف سيارة</div>
+        </div>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="prop reveal reveal-delay-1">
+      <div class="prop-visual">
+        <div class="prop-visual-icon">🏡</div>
+        <div class="prop-badge">فرصة</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-loc">📍 حي الرياض</div>
+        <div class="prop-name">فيلا عائلية</div>
+        <div class="prop-price">2,800,000 درهم</div>
+        <div class="prop-specs">
+          <div class="spec-item"><strong>280 م²</strong>المساحة</div>
+          <div class="spec-item"><strong>5</strong>غرف</div>
+        </div>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="prop reveal reveal-delay-2">
+      <div class="prop-visual">
+        <div class="prop-visual-icon">🏗️</div>
+        <div class="prop-badge">جديد</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-loc">📍 القنيطرة الجديدة</div>
+        <div class="prop-name">شقة للاستثمار</div>
+        <div class="prop-price">650,000 درهم</div>
+        <div class="prop-specs">
+          <div class="spec-item"><strong>75 م²</strong>المساحة</div>
+          <div class="spec-item"><strong>2</strong>غرف</div>
+        </div>
+      </div>
+    </div>
+    <!-- CTA card -->
+    <div class="prop prop-cta reveal reveal-delay-3" onclick="window.open('https://wa.me/+212649989742','_blank')">
+      <div class="prop-cta-icon">+</div>
+      <div class="prop-cta-title">عندك عقار للبيع؟</div>
+      <div class="prop-cta-sub">تواصل معنا وحنا نتكلفو بالباقي</div>
+      <div style="font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(184,150,62,0.4);padding-bottom:2px;">ابدأ الآن ←</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ WHY US ═══════════════════ -->
+<section id="why">
+  <div class="why-bg-text">ثقة</div>
+  <div class="why-grid">
+    <div>
+      <div class="section-eyebrow reveal">
+        <div class="sep-line"></div>
+        <div class="section-tag-text">لماذا تمغربيت</div>
+      </div>
+      <h2 class="section-h2 reveal reveal-delay-1" style="margin-bottom:48px;">
+        لأن ثقتك<br><em>أهم شيء</em>
+      </h2>
+      <div class="why-list">
+        <div class="why-item reveal">
+          <div class="why-item-num">01</div>
+          <div>
+            <div class="why-item-title">شفافية 100%</div>
+            <div class="why-item-desc">ما كاينش أسرار — كل شيء واضح من أول خطوة لآخر خطوة.</div>
+          </div>
+        </div>
+        <div class="why-item reveal reveal-delay-1">
+          <div class="why-item-num">02</div>
+          <div>
+            <div class="why-item-title">خبرة محلية عميقة</div>
+            <div class="why-item-desc">كنعرفو سوق القنيطرة مزيان — كل حي، كل سعر، كل فرصة.</div>
+          </div>
+        </div>
+        <div class="why-item reveal reveal-delay-2">
+          <div class="why-item-num">03</div>
+          <div>
+            <div class="why-item-title">مرافقة كاملة</div>
+            <div class="why-item-desc">من أول تواصل حتى توقيع العقد — ما تبقاش وحدك.</div>
+          </div>
+        </div>
+        <div class="why-item reveal reveal-delay-3">
+          <div class="why-item-num">04</div>
+          <div>
+            <div class="why-item-title">نتائج حقيقية</div>
+            <div class="why-item-desc">500+ عقار بيعناهم بنجاح — الأرقام تتكلم.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-right reveal reveal-delay-2">
+      <div class="why-quote">
+        <div class="why-quote-text">"العقار ما شي غير مبنى — هو مستقبل، هو أمان، هو حياة كاملة."</div>
+        <div class="why-quote-author">— فيصل، مؤسس تمغربيت</div>
+      </div>
+      <div class="why-cta-box">
+        <div class="why-cta-box-title">جاهز تبدأ؟</div>
+        <div class="why-cta-box-sub">احجز استشارتك المجانية اليوم وخلينا نوجدوا ليك الحل المثالي.</div>
+        <a href="https://wa.me/+212649989742" class="btn-dark">ابدأ الآن ←</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<section id="contact">
+  <div class="contact-geo"></div>
+  <div class="contact-inner">
+    <div>
+      <div class="section-eyebrow reveal">
+        <div class="sep-line"></div>
+        <div class="section-tag-text">تواصل معنا</div>
+      </div>
+      <h2 class="section-h2 reveal reveal-delay-1">نبداو<br><em>نتكلمو 🤝</em></h2>
+      <p class="contact-desc reveal reveal-delay-2">
+        فيصل دايما متواجد باش يجاوب على أسئلتك ويوجهك نحو القرار الصح.
+        تواصل معنا بالطريقة اللي تناسبك.
       </p>
-      
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#search" 
-           class="bg-white text-emerald-800 hover:bg-emerald-100 px-10 py-4 rounded-3xl font-semibold text-lg transition flex items-center justify-center gap-3">
-          ابحث عن عقار الآن
-          <i class="fas fa-search"></i>
+      <div class="contact-cards">
+        <a href="tel:+212649989742" class="contact-card reveal reveal-delay-1">
+          <div class="cc-icon">📞</div>
+          <div class="cc-content">
+            <div class="cc-label">اتصل بنا</div>
+            <div class="cc-val">+212 649 989 742</div>
+          </div>
         </a>
-        <a href="https://wa.me/+212649989742" target="_blank"
-           class="border-2 border-white hover:bg-white hover:text-emerald-800 px-10 py-4 rounded-3xl font-semibold text-lg transition flex items-center justify-center gap-3">
-          أضف عقارك للبيع
+        <a href="https://wa.me/+212649989742" class="contact-card reveal reveal-delay-2">
+          <div class="cc-icon">💬</div>
+          <div class="cc-content">
+            <div class="cc-label">واتساب</div>
+            <div class="cc-val">راسلنا مباشرة على واتساب</div>
+          </div>
         </a>
-      </div>
-
-      <div class="mt-16 flex justify-center gap-10 text-sm">
-        <div class="flex items-center gap-2">
-          <i class="fas fa-camera text-emerald-300"></i>
-          <span>صور احترافية</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <i class="fas fa-vr-cardboard text-emerald-300"></i>
-          <span>جولات 360°</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <i class="fas fa-shield-alt text-emerald-300"></i>
-          <span>مُتحقق منه</span>
-        </div>
+        <a href="https://linktr.ee/Tamghrabayt" class="contact-card reveal reveal-delay-3">
+          <div class="cc-icon">🔗</div>
+          <div class="cc-content">
+            <div class="cc-label">جميع الروابط</div>
+            <div class="cc-val">linktr.ee/Tamghrabayt</div>
+          </div>
+        </a>
       </div>
     </div>
-  </header>
-
-  <!-- Search Bar -->
-  <div id="search" class="max-w-6xl mx-auto -mt-10 relative z-10 px-6">
-    <div class="bg-white rounded-3xl shadow-2xl p-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div class="faisal-card reveal reveal-delay-2">
+      <div class="faisal-avatar">ف</div>
+      <div class="faisal-name">فيصل</div>
+      <div class="faisal-title">مؤسس تمغربيت · خبير عقاري</div>
+      <div class="faisal-bio">
+        متخصص في السوق العقاري بالقنيطرة والمغرب — كنبني علاقات حقيقية مبنية على الثقة والشفافية.
+        هدفي مو غير البيع، هدفي أساسي هو إيجاد أفضل حل ليك ولعائلتك.
+      </div>
+      <div class="faisal-meta">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">المدينة / الحي</label>
-          <select class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-emerald-600">
-            <option>القنيطرة</option>
-            <option>الرباط</option>
-            <option>طنجة</option>
-            <option>مراكش</option>
-          </select>
+          <div class="fmeta-num">500+</div>
+          <div class="fmeta-label">صفقة ناجحة</div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">نوع العقار</label>
-          <select class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-emerald-600">
-            <option>فيلا</option>
-            <option>شقة</option>
-            <option>أرض</option>
-            <option>محل تجاري</option>
-          </select>
+          <div class="fmeta-num">8+</div>
+          <div class="fmeta-label">سنة خبرة</div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">السعر (درهم)</label>
-          <input type="text" placeholder="من - إلى" 
-                 class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-emerald-600">
-        </div>
-        <div class="flex items-end">
-          <button onclick="alert('جاري البحث... (ستضيف الـ JS لاحقاً)')" 
-                  class="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-4 rounded-3xl font-semibold transition flex items-center justify-center gap-2">
-            <i class="fas fa-search"></i>
-            ابحث
-          </button>
+          <div class="fmeta-num">القنيطرة</div>
+          <div class="fmeta-label">المغرب</div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Featured Properties -->
-  <section class="max-w-7xl mx-auto px-6 py-20">
-    <div class="flex justify-between items-end mb-10">
-      <div>
-        <span class="text-emerald-700 font-medium">مختارة لك</span>
-        <h2 class="text-4xl font-bold">عقارات مميزة في القنيطرة</h2>
-      </div>
-      <a href="#" class="text-emerald-700 hover:underline flex items-center gap-2">
-        عرض الكل <i class="fas fa-arrow-left"></i>
-      </a>
-    </div>
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer id="footer">
+  <div class="footer-logo-wrap">
+    <div class="footer-logo-ar">تمغربيت</div>
+    <div class="footer-logo-sub">Tamghrabayt · Real Estate · Kénitra</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#services">الخدمات</a></li>
+    <li><a href="#listings">العقارات</a></li>
+    <li><a href="https://wa.me/+212649989742">واتساب</a></li>
+    <li><a href="https://linktr.ee/Tamghrabayt">الروابط</a></li>
+    <li><a href="tel:+212649989742">اتصل</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Tamghrabayt · جميع الحقوق محفوظة</div>
+</footer>
 
-    <!-- Masonry Grid -->
-    <div class="masonry">
-      <!-- Property Card 1 -->
-      <div class="masonry-item bg-white rounded-3xl overflow-hidden shadow-lg">
-        <img src="https://picsum.photos/id/1015/600/400" alt="فيلا" class="w-full h-64 object-cover">
-        <div class="p-6">
-          <div class="flex justify-between items-start">
-            <div>
-              <p class="text-emerald-700 font-semibold text-lg">2,450,000 درهم</p>
-              <p class="text-gray-600">فيلا فاخرة • 4 غرف • 280 م²</p>
-            </div>
-            <span class="bg-emerald-100 text-emerald-700 text-xs px-3 py-1 rounded-full">مُتحقق</span>
-          </div>
-          <p class="text-sm text-gray-500 mt-3">حي الرياض، القنيطرة</p>
-          <button onclick="window.open('https://wa.me/+212649989742?text=مهتم%20بالفيلا%20في%20الرياض','_blank')" 
-                  class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-3 rounded-2xl text-sm font-medium transition">
-            تواصل مع فيصل
-          </button>
-        </div>
-      </div>
+<!-- ═══════════════════ JS ═══════════════════ -->
+<script>
+/* Cursor */
+const dot = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
 
-      <!-- Property Card 2 -->
-      <div class="masonry-item bg-white rounded-3xl overflow-hidden shadow-lg">
-        <img src="https://picsum.photos/id/133/600/500" alt="شقة" class="w-full h-64 object-cover">
-        <div class="p-6">
-          <div class="flex justify-between items-start">
-            <div>
-              <p class="text-emerald-700 font-semibold text-lg">980,000 درهم</p>
-              <p class="text-gray-600">شقة حديثة • 3 غرف • 145 م²</p>
-            </div>
-            <span class="bg-amber-100 text-amber-700 text-xs px-3 py-1 rounded-full">استثمار</span>
-          </div>
-          <p class="text-sm text-gray-500 mt-3">وسط المدينة، القنيطرة</p>
-          <button onclick="window.open('https://wa.me/+212649989742?text=مهتم%20بالشقة%20في%20وسط%20المدينة','_blank')" 
-                  class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-3 rounded-2xl text-sm font-medium transition">
-            تواصل مع فيصل
-          </button>
-        </div>
-      </div>
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px';
+  dot.style.top = my + 'px';
+});
 
-      <!-- Property Card 3 -->
-      <div class="masonry-item bg-white rounded-3xl overflow-hidden shadow-lg">
-        <img src="https://picsum.photos/id/201/600/380" alt="أرض" class="w-full h-64 object-cover">
-        <div class="p-6">
-          <div class="flex justify-between items-start">
-            <div>
-              <p class="text-emerald-700 font-semibold text-lg">1,850,000 درهم</p>
-              <p class="text-gray-600">أرض سكنية • 1200 م²</p>
-            </div>
-          </div>
-          <p class="text-sm text-gray-500 mt-3">ضواحي القنيطرة</p>
-          <button onclick="window.open('https://wa.me/+212649989742?text=مهتم%20بالأرض','_blank')" 
-                  class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-3 rounded-2xl text-sm font-medium transition">
-            تواصل مع فيصل
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
+function lerpCursor() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(lerpCursor);
+}
+lerpCursor();
 
-  <!-- Trust & Contact -->
-  <section class="bg-white py-20">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-4">لماذا تختار تمغربيت؟</h2>
-      <p class="max-w-md mx-auto text-gray-600 mb-12">
-        فيصل من تمغربيت يقدم لك تجربة عقارية مختلفة: صور احترافية، شفافية كاملة، ودعم شخصي.
-      </p>
+document.querySelectorAll('a, button, .svc-card, .prop, .prop-cta').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hover-active'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hover-active'));
+});
 
-      <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-        <div class="text-center">
-          <i class="fas fa-camera text-5xl text-emerald-600 mb-4"></i>
-          <h3 class="font-semibold">تصوير احترافي</h3>
-          <p class="text-sm text-gray-500">صور عالية الجودة + جولات افتراضية</p>
-        </div>
-        <div class="text-center">
-          <i class="fas fa-handshake text-5xl text-emerald-600 mb-4"></i>
-          <h3 class="font-semibold">معاملات موثوقة</h3>
-          <p class="text-sm text-gray-500">دعم قانوني وشفافية كاملة</p>
-        </div>
-        <div class="text-center">
-          <i class="fas fa-map-marker-alt text-5xl text-emerald-600 mb-4"></i>
-          <h3 class="font-semibold">معرفة محلية</h3>
-          <p class="text-sm text-gray-500">خبير في سوق القنيطرة والمغرب</p>
-        </div>
-      </div>
+/* Nav scroll */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
 
-      <div class="mt-16">
-        <a href="https://wa.me/+212649989742" target="_blank"
-           class="inline-flex items-center gap-4 bg-emerald-700 text-white px-10 py-5 rounded-3xl text-xl font-medium hover:bg-emerald-800 transition">
-          <i class="fab fa-whatsapp text-3xl"></i>
-          <div>
-            <span>تواصل مباشرة مع فيصل</span><br>
-            <span class="text-sm opacity-90">+212 649 98 97 42</span>
-          </div>
-        </a>
-      </div>
+/* Reveal on scroll */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
 
-      <div class="mt-8 text-sm text-gray-500">
-        <a href="https://linktr.ee/Tamghrabayt" target="_blank" class="hover:underline">رابط جميع التواصل →</a>
-      </div>
-    </div>
-  </section>
+reveals.forEach(el => observer.observe(el));
 
-  <footer class="bg-gray-900 text-white py-12">
-    <div class="max-w-7xl mx-auto px-6 text-center text-sm">
-      <p>© 2026 تمغربيت - فيصل | عقارات القنيطرة والمغرب</p>
-      <p class="mt-2">صمم بـ ❤️ لتجربة مستخدم استثنائية</p>
-    </div>
-  </footer>
-
-  <script>
-    // Tailwind script already loaded via CDN
-  </script>
+/* Hero immediate reveal */
+setTimeout(() => {
+  document.querySelectorAll('.hero-left .reveal').forEach(el => el.classList.add('visible'));
+}, 100);
+</script>
 </body>
 </html>
