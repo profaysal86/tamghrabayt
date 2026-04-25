@@ -3,342 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تمغربيت | منصة العقار الفاخر</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>تمغربيت | الفخامة العقارية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- المتغيرات الأساسية (لوحة الألوان) --- */
         :root {
             --bg-main: #0b101e;
-            --bg-panel: rgba(18, 24, 45, 0.7);
             --gold: #d4af37;
-            --gold-hover: #e8c34f;
-            --text-light: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border-glass: rgba(255, 255, 255, 0.08);
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --glass: rgba(18, 24, 45, 0.8);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #f1f5f9;
         }
 
-        /* --- الإعدادات العامة --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-light);
-            height: 100vh;
-            overflow: hidden; /* منع تمرير الصفحة بالكامل */
+            background: var(--bg-main);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: radial-gradient(circle at top, #1a2a44 0%, #0b101e 100%);
+            /* السماح بالتمرير */
+            overflow-y: auto; 
+            min-height: 100vh;
+        }
+
+        /* حاوية التصميم الرئيسية */
+        .app-container {
             display: grid;
-            grid-template-columns: 320px 1fr 380px; /* تقسيم الشاشة: يمين، وسط، يسار */
             gap: 20px;
             padding: 20px;
-            background-image: radial-gradient(circle at 50% 0%, #152238 0%, #0b101e 100%);
+            max-width: 1400px;
+            margin: 0 auto;
+            /* تقسيم الشاشة للكمبيوتر */
+            grid-template-columns: 300px 1fr 350px;
         }
 
-        h1, h2, h3 { font-family: 'Amiri', serif; color: var(--gold); }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        button { cursor: pointer; font-family: 'Cairo', sans-serif; transition: 0.3s; border: none; }
+        /* التجاوب مع الهاتف */
+        @media (max-width: 1100px) {
+            .app-container {
+                grid-template-columns: 1fr; /* عمود واحد فقط في الجوال */
+            }
+            .sidebar-left, .sidebar-right {
+                order: 2; /* وضع التفاصيل والبطاقات تحت القسم الرئيسي في الجوال */
+            }
+            .main-content {
+                order: 1;
+            }
+        }
 
-        /* --- تأثير الزجاج (Glassmorphism) --- */
-        .glass {
-            background: var(--bg-panel);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-glass);
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
             border-radius: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        /* تخصيص شريط التمرير (Scrollbar) ليناسب التصميم */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-
-        /* =========================================
-           1. اللوحة اليمنى (القائمة والعقارات)
-        ========================================= */
-        .right-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            height: 100%;
-        }
-
-        .brand {
-            text-align: center;
             padding: 20px;
-        }
-        .brand h1 { font-size: 28px; letter-spacing: 2px; color: #fff; margin-bottom: 5px; }
-        .brand p { font-size: 14px; color: var(--gold); }
-
-        .properties-list {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding-right: 5px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .prop-card-mini {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-glass);
-            border-radius: 15px;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .prop-card-mini:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.06); border-color: var(--gold); }
-
-        .prop-img-mini {
-            width: 100%;
-            height: 120px;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-        .prop-info-mini h3 { font-size: 16px; color: #fff; }
-        .prop-info-mini .loc { font-size: 12px; color: var(--text-muted); margin-bottom: 5px; }
-        .prop-info-mini .price { font-size: 15px; font-weight: bold; color: var(--gold); }
-
-        /* =========================================
-           2. اللوحة الوسطى (الرئيسية، البحث، الخريطة)
-        ========================================= */
-        .center-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            height: 100%;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
-        /* شريط التنقل */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 25px;
-        }
-        .nav-links { display: flex; gap: 20px; list-style: none; font-size: 14px; font-weight: 600;}
-        .nav-links a:hover { color: var(--gold); }
-        .user-btn { background: var(--gold); color: #000; padding: 8px 20px; border-radius: 8px; font-weight: bold; }
-
-        /* قسم الصورة الرئيسية (Hero) */
-        .hero-section {
-            position: relative;
-            height: 350px;
-            border-radius: 20px;
-            background: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            overflow: hidden;
-        }
-        .hero-section::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(11,16,30,0.3), rgba(11,16,30,0.8));
-        }
-        .hero-content { position: relative; z-index: 1; }
-        .hero-content h2 { font-size: 32px; color: #fff; margin-bottom: 10px; }
-        .hero-content p { color: var(--text-light); font-size: 15px; }
-
-        /* شريط البحث */
-        .search-bar {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 85%;
-            padding: 10px;
-            display: flex;
-            gap: 10px;
-            z-index: 2;
-        }
-        .search-bar input, .search-bar select {
-            flex: 1;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border-glass);
-            background: rgba(0,0,0,0.4);
-            color: #fff;
-            font-family: inherit;
-        }
-        .search-bar button {
-            background: var(--gold); color: #000; padding: 0 25px; border-radius: 8px; font-weight: bold; font-size: 16px;
-        }
-
-        /* الخريطة */
-        .map-section {
-            height: 300px;
-            border-radius: 20px;
-            background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .map-section::before { content:''; position:absolute; inset:0; background: rgba(11, 16, 30, 0.6); border-radius: 20px; }
+        /* --- القسم الأيمن (الشعار والقائمة) --- */
+        .brand { text-align: center; margin-bottom: 30px; }
+        .brand h1 { font-family: 'Amiri', serif; color: var(--gold); font-size: 32px; }
         
-        .map-overlay-text { position: relative; z-index: 1; font-size: 24px; font-weight: bold; color: var(--gold); background: var(--bg-panel); padding: 10px 30px; border-radius: 10px;}
+        .mini-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .mini-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+        .mini-card img { width: 100%; height: 120px; object-fit: cover; }
+        .mini-card-info { padding: 10px; }
+        .mini-card-info h4 { font-size: 14px; margin-bottom: 5px; }
+        .mini-card-info .price { color: var(--gold); font-weight: bold; }
 
-        /* =========================================
-           3. اللوحة اليسرى (تفاصيل العقار)
-        ========================================= */
-        .left-panel {
+        /* --- القسم الأوسط (البحث والهيرو) --- */
+        .hero {
+            height: 300px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            height: 100%;
-            padding: 25px;
-            overflow-y: auto;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
-        .details-img-container { position: relative; width: 100%; height: 250px; border-radius: 15px; overflow: hidden; }
-        .details-img { width: 100%; height: 100%; object-fit: cover; }
-        .details-badge { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.7); color: var(--gold); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .search-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%;
+            background: rgba(0,0,0,0.6);
+            padding: 15px;
+            border-radius: 15px;
+        }
+        .search-box input, .search-box select {
+            flex: 1;
+            min-width: 120px;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background: #1a2a44;
+            color: white;
+        }
+        .search-box button {
+            background: var(--gold);
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
 
-        .details-header { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 10px; }
-        .details-header h2 { font-size: 22px; color: #fff; }
-        .details-header .price { font-size: 20px; font-weight: bold; color: var(--gold); }
-        .details-loc { font-size: 13px; color: var(--text-muted); margin-top: 5px; }
-
-        .specs-grid {
+        /* --- القسم الأيسر (التفاصيل) --- */
+        .detail-img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; }
+        .specs {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 10px;
             margin: 20px 0;
         }
-        .spec-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-glass);
+        .spec-item {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
             border-radius: 10px;
-            padding: 15px 5px;
             text-align: center;
         }
-        .spec-val { display: block; font-size: 16px; font-weight: bold; color: #fff; }
-        .spec-lbl { display: block; font-size: 11px; color: var(--text-muted); margin-top: 5px; }
+        .spec-item span { display: block; font-size: 12px; color: var(--gold); }
 
-        .desc-section h3 { font-size: 16px; margin-bottom: 10px; }
-        .desc-section p { font-size: 13px; line-height: 1.8; color: var(--text-muted); }
-
-        .action-btn {
-            margin-top: auto; /* دفع الزر للأسفل */
-            background: var(--gold);
-            color: #000;
+        .btn-contact {
+            display: block;
             width: 100%;
             padding: 15px;
-            border-radius: 12px;
-            font-size: 16px;
+            background: var(--gold);
+            color: #000;
+            text-align: center;
+            border-radius: 10px;
             font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
         }
-        .action-btn:hover { background: var(--gold-hover); transform: scale(1.02); }
 
+        /* تحسين المسافات للجوال */
+        @media (max-width: 600px) {
+            .hero h2 { font-size: 20px; }
+            .search-box button { width: 100%; }
+        }
     </style>
 </head>
 <body>
 
-    <aside class="right-panel glass">
-        <div class="brand">
-            <h1>TAMGHRABAYT</h1>
-            <p>بيت بل روح مغربية</p>
-        </div>
+    <div class="app-container">
         
-        <div class="properties-list">
-            <div class="prop-card-mini">
-                <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="فيلا" class="prop-img-mini">
-                <div class="prop-info-mini">
-                    <h3>فيلا فاخرة بمسبح</h3>
-                    <div class="loc">📍 القنيطرة، حي الرياض</div>
-                    <div class="price">5,250,000 درهم</div>
-                </div>
-            </div>
-            <div class="prop-card-mini">
-                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="شقة" class="prop-img-mini">
-                <div class="prop-info-mini">
-                    <h3>شقة عصرية راقية</h3>
-                    <div class="loc">📍 القنيطرة، مهدية</div>
-                    <div class="price">1,250,000 درهم</div>
-                </div>
-            </div>
-            <div class="prop-card-mini">
-                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="فيلا" class="prop-img-mini">
-                <div class="prop-info-mini">
-                    <h3>فيلا بتصميم حديث</h3>
-                    <div class="loc">📍 الرباط، السويسي</div>
-                    <div class="price">8,800,000 درهم</div>
-                </div>
-            </div>
-        </div>
-    </aside>
-
-    <main class="center-panel">
-        <nav class="navbar glass">
-            <ul class="nav-links">
-                <li><a href="#" style="color: var(--gold);">الرئيسية</a></li>
-                <li><a href="#">عقاراتي</a></li>
-                <li><a href="#">الاستثمارات</a></li>
-                <li><a href="#">تواصل معنا</a></li>
-            </ul>
-            <button class="user-btn">تسجيل الدخول</button>
-        </nav>
-
-        <section class="hero-section glass">
-            <div class="hero-content">
-                <h2>تمغربيت: اكتشف أصالة السكن</h2>
-                <p>منازل استثنائية تعكس أصالة المغرب ورفاهية الحياة العصرية</p>
+        <aside class="sidebar-right glass-panel">
+            <div class="brand">
+                <h1>تمغربيت</h1>
+                <p>عقارات القنيطرة الفاخرة</p>
             </div>
             
-            <div class="search-bar glass">
-                <input type="text" placeholder="ابحث عن مدينة، حي، أو مرجع...">
-                <select><option>نوع العقار</option><option>فيلا</option><option>شقة</option></select>
-                <select><option>السعر</option><option>أقل من مليون</option><option>أكثر من مليون</option></select>
-                <button>بحث</button>
+            <h3>عقارات مميزة</h3>
+            <br>
+            <div class="mini-card">
+                <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=400&q=80">
+                <div class="mini-card-info">
+                    <h4>فيلا مودرن مع مسبح</h4>
+                    <p class="price">4,500,000 د.م</p>
+                </div>
             </div>
-        </section>
-
-        <section class="map-section glass">
-            <div class="map-overlay-text">البحث عبر الخريطة التفاعلية</div>
-        </section>
-    </main>
-
-    <aside class="left-panel glass">
-        <div class="details-img-container">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="تفاصيل الفيلا" class="details-img">
-            <span class="details-badge">عقار مميز</span>
-        </div>
-
-        <div class="details-header">
-            <div>
-                <h2>فيلا فاخرة بتصميم مغربي</h2>
-                <div class="details-loc">القنيطرة، حي الرياض الممتاز</div>
+            <div class="mini-card">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400&q=80">
+                <div class="mini-card-info">
+                    <h4>شقة إطلالة بحرية</h4>
+                    <p class="price">1,100,000 د.م</p>
+                </div>
             </div>
-            <div class="price">5,250,000 د.م</div>
-        </div>
+        </aside>
 
-        <div class="specs-grid">
-            <div class="spec-box"><span class="spec-val">450</span><span class="spec-lbl">المساحة (م²)</span></div>
-            <div class="spec-box"><span class="spec-val">5</span><span class="spec-lbl">غرف النوم</span></div>
-            <div class="spec-box"><span class="spec-val">4</span><span class="spec-lbl">الحمامات</span></div>
-            <div class="spec-box"><span class="spec-val">2</span><span class="spec-lbl">موقف سيارات</span></div>
-        </div>
+        <main class="main-content">
+            <div class="hero glass-panel">
+                <h2 style="color: #fff; margin-bottom: 10px;">ابحث عن منزل أحلامك في المغرب</h2>
+                <p style="margin-bottom: 20px;">نحن نجمع بين التراث والحداثة في مكان واحد</p>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="المدينة أو الحي...">
+                    <select><option>نوع العقار</option><option>فيلا</option></select>
+                    <button>ابحث الآن</button>
+                </div>
+            </div>
 
-        <div class="desc-section">
-            <h3>وصف العقار</h3>
-            <p>
-                فيلا فاخرة بتصميم يدمج بين اللمسة المغربية الأصيلة والمعمار الحديث. تقع في قلب منطقة هادئة وراقية بالقنيطرة. تتميز بتشطيبات رخامية، مسبح خاص، وحديقة واسعة توفر أعلى درجات الخصوصية والراحة لك ولعائلتك.
+            <div class="glass-panel">
+                <h3>لماذا تمغربيت؟</h3>
+                <p style="font-size: 14px; opacity: 0.8; margin-top: 10px;">
+                    نحن لا نقدم مجرد جدران، بل نقدم تجربة سكنية تعبق بالروح المغربية الأصيلة، مع ضمان أعلى معايير الجودة والأمان في كل معاملة.
+                </p>
+            </div>
+        </main>
+
+        <aside class="sidebar-left glass-panel">
+            <img src="https://images.unsplash.com/photo-1600607687940-47a0028d95c5?auto=format&fit=crop&w=500&q=80" class="detail-img">
+            
+            <div style="margin-top: 15px;">
+                <h2 style="color: #fff;">فيلا السويسي الفاخرة</h2>
+                <p style="color: var(--gold); font-weight: bold; font-size: 20px;">7,200,000 د.م</p>
+            </div>
+
+            <div class="specs">
+                <div class="spec-item"><span>المساحة</span><strong>500 م²</strong></div>
+                <div class="spec-item"><span>الغرف</span><strong>6</strong></div>
+                <div class="spec-item"><span>الحمامات</span><strong>4</strong></div>
+                <div class="spec-item"><span>الكراج</span><strong>سيارتين</strong></div>
+            </div>
+
+            <p style="font-size: 13px; opacity: 0.7;">
+                تقع هذه الفيلا في أرقى أحياء الرباط، وتتميز بتصميم أندلسي معاصر وحدائق واسعة مجهزة بنظام ري ذكي ونظام أمني متكامل.
             </p>
-        </div>
 
-        <button class="action-btn">تواصل مع الوسيط العقاري</button>
-    </aside>
+            <a href="#" class="btn-contact">تواصل معنا الآن</a>
+        </aside>
+
+    </div>
 
 </body>
 </html>
