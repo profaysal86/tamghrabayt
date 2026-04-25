@@ -1,337 +1,152 @@
+<!-- Source reference: :contentReference[oaicite:0]{index=0} -->
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAMGHRABAYT | تمغربيت — The Art of Moroccan Living</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;500;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-gold': '#C5A358',
-                        'brand-dark': '#121412',
-                        'brand-sand': '#F9F7F2',
-                        'brand-clay': '#7D6356',
-                    },
-                    fontFamily: {
-                        serif: ['Bodoni Moda', 'serif'],
-                        sans: ['Inter', 'sans-serif'],
-                        arabic: ['Noto Sans Arabic', 'sans-serif'],
-                    },
-                    letterSpacing: {
-                        'ultra-wide': '0.25em',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .glass-nav {
-            background: rgba(249, 247, 242, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .img-zoom { overflow: hidden; }
-        .img-zoom img { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
-        .img-zoom:hover img { transform: scale(1.05); }
-        .zellige-pattern {
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l15 15-15 15-15-15L30 0zm0 60l15-15-15-15-15 15 15 15z' fill='%23c5a358' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
-        .line-draw {
-            width: 0;
-            height: 1px;
-            background: #C5A358;
-            transition: width 1s ease-in-out;
-        }
-        .line-draw.active { width: 100%; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TAMGHRABAYT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .heading { font-family: 'Playfair Display', serif; }
+  </style>
 </head>
-<body class="bg-brand-sand text-brand-dark font-sans antialiased overflow-x-hidden">
 
-    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-brand-gold/10">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-8">
-                <a href="#" class="text-xs uppercase tracking-ultra-wide font-medium">Collections</a>
-                <a href="#" class="text-xs uppercase tracking-ultra-wide font-medium">The Heritage</a>
-            </div>
-            
-            <div class="text-center">
-                <h1 class="font-serif text-2xl tracking-widest uppercase">TAMGHRABAYT</h1>
-                <p class="font-arabic text-sm tracking-normal -mt-1 opacity-70">تمغربيت</p>
-            </div>
+<body class="bg-neutral-950 text-neutral-200">
 
-            <div class="flex items-center space-x-8">
-                <a href="#" class="text-xs uppercase tracking-ultra-wide font-medium">Curated Search</a>
-                <button class="bg-brand-dark text-white px-6 py-2.5 text-[10px] uppercase tracking-widest hover:bg-brand-gold transition-colors duration-500">
-                    Inquire
-                </button>
-            </div>
-        </div>
+<!-- NAV -->
+<header class="absolute w-full z-20">
+  <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+    <div class="text-xl tracking-widest heading">TAMGHRABAYT</div>
+    <nav class="hidden md:flex gap-10 text-sm opacity-70">
+      <a href="#" class="hover:opacity-100">Vision</a>
+      <a href="#" class="hover:opacity-100">Selections</a>
+      <a href="#" class="hover:opacity-100">Insights</a>
+      <a href="#" class="hover:opacity-100">Contact</a>
     </nav>
+  </div>
+</header>
 
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?auto=format&fit=crop&q=80&w=2560" 
-                 class="w-full h-full object-cover" alt="Luxury Moroccan Architecture">
-            <div class="absolute inset-0 bg-brand-dark/30"></div>
-        </div>
+<!-- HERO -->
+<section class="relative h-screen flex items-center">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="w-full h-full object-cover opacity-40"/>
+  </div>
 
-        <div class="relative z-10 text-center text-white px-4">
-            <span class="inline-block mb-6 text-xs uppercase tracking-[0.4em] reveal">Private Residences & Estates</span>
-            <h2 class="font-serif text-6xl md:text-8xl mb-8 reveal" style="transition-delay: 200ms;">An Icon of <br><i class="font-light">Heritage & Living</i></h2>
-            <div class="flex justify-center reveal" style="transition-delay: 400ms;">
-                <div class="h-px w-24 bg-brand-gold self-center"></div>
-                <p class="mx-6 font-arabic text-xl">الفخامة في جوهر الأصالة</p>
-                <div class="h-px w-24 bg-brand-gold self-center"></div>
-            </div>
-        </div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="max-w-2xl">
+      <h1 class="heading text-5xl md:text-6xl leading-tight mb-6">
+        A refined layer<br/>between you<br/>and the market
+      </h1>
+      <p class="opacity-70 mb-8">
+        TAMGHRABAYT curates Moroccan real estate with precision, clarity, and restraint. No noise. Only signal.
+      </p>
+      <button class="px-6 py-3 border border-white/30 hover:border-white transition">
+        Explore selections
+      </button>
+    </div>
+  </div>
+</section>
 
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center">
-            <div class="w-px h-16 bg-white/30 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-full bg-brand-gold animate-bounce" style="animation-duration: 3s;"></div>
-            </div>
-        </div>
-    </section>
+<!-- STATEMENT -->
+<section class="py-24 border-t border-white/10">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <p class="heading text-3xl leading-relaxed">
+      We don’t list properties.<br/>
+      We filter reality.
+    </p>
+  </div>
+</section>
 
-    <section class="py-32 px-6 zellige-pattern">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-12 gap-16 items-center">
-            <div class="md:col-span-7">
-                <h3 class="text-xs uppercase tracking-ultra-wide text-brand-gold mb-8">The Ethos</h3>
-                <p class="font-serif text-3xl md:text-4xl leading-relaxed mb-8 reveal">
-                    We do not merely list properties. We curate architectural legacies that define the soul of Morocco.
-                </p>
-                <p class="text-brand-clay leading-loose max-w-lg mb-10 reveal">
-                    TAMGHRABAYT is a bridge between the historical depth of the Kingdom and the modern aspirations of its most discerning residents. Every estate in our portfolio is selected for its architectural integrity, narrative, and soul.
-                </p>
-                <div class="line-draw mb-8 reveal"></div>
-                <a href="#" class="group inline-flex items-center space-x-4">
-                    <span class="text-xs uppercase tracking-widest font-semibold">Discover Our Vision</span>
-                    <span class="w-8 h-px bg-brand-dark group-hover:w-12 transition-all"></span>
-                </a>
-            </div>
-            <div class="md:col-span-5 relative">
-                <div class="aspect-[3/4] img-zoom">
-                    <img src="https://images.unsplash.com/photo-1548013146-72479768bbaa?auto=format&fit=crop&q=80&w=1200" alt="Moroccan Detail" class="w-full h-full object-cover">
-                </div>
-                <div class="absolute -bottom-8 -left-8 bg-brand-gold p-12 hidden md:block"></div>
-            </div>
-        </div>
-    </section>
+<!-- FEATURED GRID -->
+<section class="py-24">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
 
-    <section class="py-24 bg-white">
-        <div class="max-w-[1400px] mx-auto px-6">
-            <div class="flex justify-between items-end mb-20">
-                <div>
-                    <h3 class="text-xs uppercase tracking-ultra-wide text-brand-gold mb-4">Curated Selections</h3>
-                    <h2 class="font-serif text-5xl">The Autumn Collection</h2>
-                </div>
-                <div class="hidden md:block">
-                    <a href="#" class="text-xs uppercase tracking-widest border-b border-brand-dark pb-1">View All Properties</a>
-                </div>
-            </div>
+    <div class="group">
+      <div class="overflow-hidden mb-4">
+        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705" class="w-full h-80 object-cover group-hover:scale-105 transition duration-700"/>
+      </div>
+      <h3 class="heading text-xl mb-2">Kenitra Residence</h3>
+      <p class="text-sm opacity-60">Strategic positioning. Real demand.</p>
+    </div>
 
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="group cursor-pointer reveal">
-                    <div class="aspect-[4/5] overflow-hidden mb-6 relative">
-                        <img src="https://images.unsplash.com/photo-1531835671043-44169720762a?auto=format&fit=crop&q=80&w=1200" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
-                        <div class="absolute top-4 left-4 bg-brand-dark/10 backdrop-blur-md text-white px-3 py-1 text-[10px] tracking-widest uppercase">
-                            Tangier Coast
-                        </div>
-                    </div>
-                    <h4 class="font-serif text-2xl mb-2">Villa Al-Andalus</h4>
-                    <p class="text-xs text-brand-clay uppercase tracking-widest mb-4">8 Bedrooms • 1,200 m²</p>
-                    <div class="h-px w-0 group-hover:w-full bg-brand-gold transition-all duration-700"></div>
-                </div>
+    <div class="group md:mt-16">
+      <div class="overflow-hidden mb-4">
+        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811" class="w-full h-80 object-cover group-hover:scale-105 transition duration-700"/>
+      </div>
+      <h3 class="heading text-xl mb-2">Rabat Apartment</h3>
+      <p class="text-sm opacity-60">Urban calm. Verified metrics.</p>
+    </div>
 
-                <div class="group cursor-pointer reveal" style="transition-delay: 200ms;">
-                    <div class="aspect-[4/5] overflow-hidden mb-6 relative">
-                        <img src="https://images.unsplash.com/photo-1505691938895-1758d7eaa511?auto=format&fit=crop&q=80&w=1200" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
-                        <div class="absolute top-4 left-4 bg-brand-dark/10 backdrop-blur-md text-white px-3 py-1 text-[10px] tracking-widest uppercase">
-                            Marrakech Palmeraie
-                        </div>
-                    </div>
-                    <h4 class="font-serif text-2xl mb-2">Dar Es Salaam</h4>
-                    <p class="text-xs text-brand-clay uppercase tracking-widest mb-4">6 Bedrooms • 850 m²</p>
-                    <div class="h-px w-0 group-hover:w-full bg-brand-gold transition-all duration-700"></div>
-                </div>
+    <div class="group">
+      <div class="overflow-hidden mb-4">
+        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae" class="w-full h-80 object-cover group-hover:scale-105 transition duration-700"/>
+      </div>
+      <h3 class="heading text-xl mb-2">Coastal Villa</h3>
+      <p class="text-sm opacity-60">Lifestyle meets capital logic.</p>
+    </div>
 
-                <div class="group cursor-pointer reveal" style="transition-delay: 400ms;">
-                    <div class="aspect-[4/5] overflow-hidden mb-6 relative">
-                        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=1200" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
-                        <div class="absolute top-4 left-4 bg-brand-dark/10 backdrop-blur-md text-white px-3 py-1 text-[10px] tracking-widest uppercase">
-                            Oualidia Heights
-                        </div>
-                    </div>
-                    <h4 class="font-serif text-2xl mb-2">The Azure Pavilion</h4>
-                    <p class="text-xs text-brand-clay uppercase tracking-widest mb-4">4 Bedrooms • 600 m²</p>
-                    <div class="h-px w-0 group-hover:w-full bg-brand-gold transition-all duration-700"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+  </div>
+</section>
 
-    <section class="py-40 bg-brand-dark text-brand-sand overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-1/3 h-full opacity-10">
-            <svg viewBox="0 0 100 100" class="w-full h-full fill-current">
-                <path d="M50 0 L100 50 L50 100 L0 50 Z" />
-            </svg>
-        </div>
-        <div class="max-w-4xl mx-auto text-center px-6 relative z-10">
-            <h2 class="font-serif text-4xl md:text-5xl italic leading-tight mb-12 reveal">
-                "Architecture is the learned game, correct and magnificent, of forms assembled in the light."
-            </h2>
-            <div class="w-12 h-px bg-brand-gold mx-auto mb-12"></div>
-            <p class="text-xs uppercase tracking-widest font-medium opacity-60">TAMGHRABAYT Design Advisory</p>
-        </div>
-    </section>
+<!-- INSIGHT BLOCK -->
+<section class="py-24 bg-white text-neutral-900">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
 
-    <section class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-24 items-center">
-                <div class="order-2 md:order-1">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="space-y-4">
-                            <div class="aspect-square img-zoom"><img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover"></div>
-                            <div class="aspect-[3/4] img-zoom"><img src="https://images.unsplash.com/photo-1582234373335-5152a5598696?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover"></div>
-                        </div>
-                        <div class="space-y-4 pt-12">
-                            <div class="aspect-[3/4] img-zoom"><img src="https://images.unsplash.com/photo-1544433480-e44299d81961?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover"></div>
-                            <div class="aspect-square img-zoom"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-1 md:order-2 space-y-10">
-                    <h3 class="text-xs uppercase tracking-ultra-wide text-brand-gold">The Advisory</h3>
-                    <h2 class="font-serif text-5xl">Beyond Transaction. <br>Bespoke Guidance.</h2>
-                    <div class="space-y-8">
-                        <div class="flex items-start space-x-6">
-                            <span class="font-serif text-2xl text-brand-gold">01</span>
-                            <div>
-                                <h5 class="font-medium text-sm uppercase tracking-widest mb-2">Off-Market Access</h5>
-                                <p class="text-brand-clay text-sm leading-relaxed">Exclusive access to the Kingdom's most prestigious estates before they reach the public sphere.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-6">
-                            <span class="font-serif text-2xl text-brand-gold">02</span>
-                            <div>
-                                <h5 class="font-medium text-sm uppercase tracking-widest mb-2">Architectural Audit</h5>
-                                <p class="text-brand-clay text-sm leading-relaxed">Comprehensive structural and historical analysis for heritage-conscious investors.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-6">
-                            <span class="font-serif text-2xl text-brand-gold">03</span>
-                            <div>
-                                <h5 class="font-medium text-sm uppercase tracking-widest mb-2">Legal Concierge</h5>
-                                <p class="text-brand-clay text-sm leading-relaxed">Discrete and seamless management of regulatory complexities and acquisition logistics.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div>
+      <h2 class="heading text-4xl mb-6">
+        Data before emotion
+      </h2>
+      <p class="opacity-70 mb-6">
+        Every property passes through a structured lens: demand, liquidity, legal clarity, and pricing integrity.
+      </p>
+      <button class="border border-neutral-900 px-6 py-3 hover:bg-neutral-900 hover:text-white transition">
+        Read insights
+      </button>
+    </div>
 
-    <section class="bg-brand-sand border-y border-brand-gold/20 py-32 text-center overflow-hidden">
-        <div class="max-w-2xl mx-auto px-6 reveal">
-            <h2 class="font-serif text-5xl mb-8">Begin Your Chapter</h2>
-            <p class="text-brand-clay mb-12">Connect with our senior partners to discuss your vision for a life in Morocco.</p>
-            <div class="flex flex-col md:flex-row justify-center gap-6">
-                <input type="email" placeholder="Your Email Address" class="bg-transparent border-b border-brand-dark/20 py-4 px-2 focus:outline-none focus:border-brand-gold transition-colors text-sm w-full md:w-64">
-                <button class="bg-brand-dark text-white px-10 py-4 text-xs uppercase tracking-widest hover:bg-brand-gold transition-all duration-500">
-                    Request Consultation
-                </button>
-            </div>
-        </div>
-    </section>
+    <div class="grid grid-cols-2 gap-6 text-sm">
+      <div>
+        <p class="text-3xl heading mb-2">+82%</p>
+        <p class="opacity-60">Demand clarity</p>
+      </div>
+      <div>
+        <p class="text-3xl heading mb-2">Top 12%</p>
+        <p class="opacity-60">Market filtering</p>
+      </div>
+      <div>
+        <p class="text-3xl heading mb-2">0 Noise</p>
+        <p class="opacity-60">No mass listings</p>
+      </div>
+      <div>
+        <p class="text-3xl heading mb-2">100%</p>
+        <p class="opacity-60">Verified context</p>
+      </div>
+    </div>
 
-    <footer class="bg-white py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-12 mb-20">
-                <div class="md:col-span-1">
-                    <h1 class="font-serif text-2xl tracking-widest uppercase mb-2">TAMGHRABAYT</h1>
-                    <p class="font-arabic text-sm opacity-60 mb-6">تمغربيت</p>
-                    <p class="text-[10px] uppercase tracking-widest text-brand-clay leading-loose">
-                        Licensed Luxury Brokerage<br>
-                        Casablanca • Marrakech • London
-                    </p>
-                </div>
-                <div>
-                    <h6 class="text-[10px] uppercase tracking-ultra-wide font-bold mb-8">Regions</h6>
-                    <ul class="text-sm space-y-4 text-brand-clay">
-                        <li><a href="#" class="hover:text-brand-gold transition-colors">Marrakech & High Atlas</a></li>
-                        <li><a href="#" class="hover:text-brand-gold transition-colors">Casablanca Finance City</a></li>
-                        <li><a href="#" class="hover:text-brand-gold transition-colors">Tangier Riviera</a></li>
-                        <li><a href="#" class="hover:text-brand-gold transition-colors">Rabat Royal Precincts</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h6 class="text-[10px] uppercase tracking-ultra-wide font-bold mb-8">Experience</h6>
-                    <ul class="text-sm space-y-4 text-brand-clay">
-                        <li><a href="#" class="hover:text-brand-gold transition-colors">Investment Insights</a></li>
-                        <li><a href="#" class="hover:text-brand-gold transition-colors">Architectural Tours</a></li>
-                        <li><a href="#" class="hover:text-brand-gold transition-colors">Our Journal</a></li>
-                        <li><a href="#" class="hover:text-brand-gold transition-colors">Artisanship</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h6 class="text-[10px] uppercase tracking-ultra-wide font-bold mb-8">Inquiries</h6>
-                    <p class="text-sm text-brand-clay mb-4 underline">private@tamghrabayt.com</p>
-                    <div class="flex space-x-4 mt-8">
-                        <div class="w-8 h-8 rounded-full border border-brand-gold/20 flex items-center justify-center text-xs">IG</div>
-                        <div class="w-8 h-8 rounded-full border border-brand-gold/20 flex items-center justify-center text-xs">LI</div>
-                        <div class="w-8 h-8 rounded-full border border-brand-gold/20 flex items-center justify-center text-xs">WA</div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-brand-gold/10">
-                <p class="text-[10px] uppercase tracking-widest text-brand-clay">© 2024 TAMGHRABAYT. All Rights Reserved.</p>
-                <div class="flex space-x-8 mt-4 md:mt-0">
-                    <a href="#" class="text-[10px] uppercase tracking-widest text-brand-clay">Privacy</a>
-                    <a href="#" class="text-[10px] uppercase tracking-widest text-brand-clay">Legal</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+  </div>
+</section>
 
-    <script>
-        // Simple Intersection Observer for reveal animations
-        const observerOptions = {
-            threshold: 0.1
-        };
+<!-- CTA -->
+<section class="py-32 text-center">
+  <div class="max-w-3xl mx-auto px-6">
+    <h2 class="heading text-4xl mb-6">
+      Enter the filtered market
+    </h2>
+    <p class="opacity-60 mb-10">
+      Access a curated layer designed for clarity, not volume.
+    </p>
+    <button class="px-8 py-4 border border-white/30 hover:border-white transition">
+      Request access
+    </button>
+  </div>
+</section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
+<!-- FOOTER -->
+<footer class="py-10 border-t border-white/10 text-center text-sm opacity-50">
+  TAMGHRABAYT / تمغربيت — Morocco
+</footer>
 
-        document.querySelectorAll('.reveal, .line-draw').forEach((el) => {
-            observer.observe(el);
-        });
-
-        // Navigation scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-2');
-                nav.classList.remove('h-20');
-            } else {
-                nav.classList.remove('py-2');
-                nav.classList.add('h-20');
-            }
-        });
-    </script>
 </body>
 </html>
