@@ -1,157 +1,372 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تمغربيت</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
-<style>
-
-body {
-  margin: 0;
-  font-family: 'Cairo', sans-serif;
-  background: #0f2027;
-  color: white;
-}
-
-/* HERO */
-.hero {
-  position: relative;
-  height: 100vh;
-  background:
-    linear-gradient(rgba(10,20,30,0.85), rgba(10,20,30,0.95)),
-    url('hero.png') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding: 20px;
-}
-
-/* النص */
-.content {
-  position: relative;
-  z-index: 2;
-  max-width: 550px;
-  text-align: right;
-}
-
-/* العنوان */
-h1 {
-  font-size: 52px;
-  margin-bottom: 10px;
-  color: #f5c16c;
-}
-
-/* النص */
-p {
-  font-size: 18px;
-  line-height: 1.7;
-  opacity: 0.9;
-}
-
-/* الأزرار */
-.buttons {
-  margin-top: 20px;
-}
-
-.buttons a {
-  display: inline-block;
-  margin: 5px;
-  padding: 12px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  color: white;
-  transition: 0.3s;
-}
-
-.phone { background: #007BFF; }
-.whatsapp { background: #25D366; }
-
-.buttons a:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
-}
-
-/* صورتك */
-.hero-img {
-  position: absolute;
-  bottom: 0;
-  right: 8%;
-  width: 380px;
-  opacity: 0.95;
-
-  /* دمج الصورة مع الخلفية */
-  mask-image: linear-gradient(to top, transparent 10%, black 65%);
-  -webkit-mask-image: linear-gradient(to top, transparent 10%, black 65%);
-
-  filter: brightness(0.95) contrast(1.05);
-
-  transform: translateY(80px);
-  animation: riseUp 1.5s ease forwards;
-}
-
-/* animation */
-@keyframes riseUp {
-  to {
-    transform: translateY(0);
-  }
-}
-
-/* الموبايل */
-@media (max-width: 768px) {
-
-  .hero {
-    flex-direction: column;
-  }
-
-  .hero-img {
-    position: relative;
-    width: 240px;
-    right: auto;
-    margin-top: 20px;
-    transform: translateY(80px);
-  }
-
-  .content {
-    text-align: center;
-  }
-
-  h1 {
-    font-size: 36px;
-  }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تمغربيت | TAMGHRABAYT - تجربة عقارية استثنائية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'royal-blue': '#0A1E3D',
+                        'gold-accent': '#C5A059',
+                        'cream-base': '#F9F7F2',
+                        'deep-blue': '#051125',
+                    },
+                    fontFamily: {
+                        'serif-ar': ['Amiri', 'serif'],
+                        'sans-ar': ['IBM Plex Sans Arabic', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'IBM Plex Sans Arabic', sans-serif; background-color: #F9F7F2; }
+        .hero-pattern {
+            background-color: #0A1E3D;
+            background-image: url("https://www.transparenttextures.com/patterns/dark-matter.png");
+        }
+        .zellige-border {
+            border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M20 0l5 15h15l-12 9 5 16-13-10-13 10 5-16-12-9h15z" fill="%23C5A059" opacity="0.2"/></svg>') 30 repeat;
+        }
+        .glass-nav {
+            background: rgba(10, 30, 61, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+        .property-card:hover .property-img {
+            transform: scale(1.05);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #C5A059 0%, #E2C284 50%, #C5A059 100%);
+        }
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #C5A059 0%, #F1D9A7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0A1E3D; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #C5A059; }
+    </style>
 </head>
+<body class="text-royal-blue selection:bg-gold-accent selection:text-white">
 
-<body>
+    <nav class="fixed w-full z-50 glass-nav py-4 px-6 md:px-12 flex justify-between items-center">
+        <div class="flex items-center gap-8">
+            <h1 class="text-3xl font-serif-ar text-gold-accent font-bold tracking-widest">تمغربيت</h1>
+            <div class="hidden md:flex gap-6 text-sm font-light text-cream-base/80">
+                <a href="#" class="hover:text-gold-accent transition-colors">عقارات مختارة</a>
+                <a href="#" class="hover:text-gold-accent transition-colors">تحليل السوق</a>
+                <a href="#" class="hover:text-gold-accent transition-colors">خدماتنا</a>
+                <a href="#" class="hover:text-gold-accent transition-colors">عن تمغربيت</a>
+            </div>
+        </div>
+        <div>
+            <button class="border border-gold-accent text-gold-accent px-6 py-2 rounded-full text-sm hover:bg-gold-accent hover:text-royal-blue transition-all duration-300">
+                تواصل معنا
+            </button>
+        </div>
+    </nav>
 
-<div class="hero">
+    <section class="relative h-screen flex items-center justify-center overflow-hidden hero-pattern">
+        <div class="absolute inset-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1533423996375-f914ab160932?q=80&w=2000&auto=format&fit=crop" alt="Luxury Moroccan Villa" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-royal-blue via-royal-blue/60 to-transparent"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl">
+            <span class="text-gold-accent tracking-[0.3em] text-sm uppercase mb-4 block animate-pulse">نخبة العقار المغربي</span>
+            <h2 class="text-5xl md:text-7xl font-serif-ar text-white mb-6 leading-tight">
+                تمغربيت <br/>
+                <span class="text-gold-accent">فن اختيار السكن</span>
+            </h2>
+            <p class="text-cream-base/80 text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+                منصة تتجاوز الوساطة التقليدية، لنقدم لكم اختيارات مدروسة تجمع بين الأصالة المعمارية والقيمة الاستثمارية الحقيقية.
+            </p>
+            
+            <div class="bg-white/10 backdrop-blur-md p-2 rounded-2xl md:rounded-full border border-white/20 max-w-3xl mx-auto shadow-2xl flex flex-col md:flex-row items-center gap-2">
+                <div class="w-full md:flex-1 px-6 py-3 border-l border-white/10 text-right">
+                    <label class="block text-[10px] text-gold-accent uppercase mb-1">الموقع المطلوب</label>
+                    <select class="bg-transparent text-white w-full outline-none appearance-none cursor-pointer">
+                        <option class="bg-royal-blue">مراكش، النخيل</option>
+                        <option class="bg-royal-blue">الدار البيضاء، أنفا</option>
+                        <option class="bg-royal-blue">طنجة، الجبل الكبير</option>
+                        <option class="bg-royal-blue">الرباط، حي الرياض</option>
+                    </select>
+                </div>
+                <div class="w-full md:flex-1 px-6 py-3 border-l border-white/10 text-right">
+                    <label class="block text-[10px] text-gold-accent uppercase mb-1">نمط الحياة</label>
+                    <select class="bg-transparent text-white w-full outline-none appearance-none cursor-pointer">
+                        <option class="bg-royal-blue">فيلات عصرية</option>
+                        <option class="bg-royal-blue">رياضات تاريخية</option>
+                        <option class="bg-royal-blue">شقق فاخرة</option>
+                    </select>
+                </div>
+                <button class="w-full md:w-auto gold-gradient text-royal-blue font-bold px-10 py-4 rounded-full hover:shadow-[0_0_20px_rgba(197,160,89,0.5)] transition-all">
+                    استكشف الفرص
+                </button>
+            </div>
+        </div>
 
-  <!-- النص -->
-  <div class="content">
-    <h1>تمغربيت</h1>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gold-accent/50">
+            <span class="text-[10px] uppercase tracking-widest">اكتشف المزيد</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-gold-accent to-transparent"></div>
+        </div>
+    </section>
 
-    <p>
-      منصة عقارية قيد الإنشاء بمدينة القنيطرة<br>
-      نعمل على تطوير أدوات للتحليل العقاري ومواكبة المستثمرين<br>
-      مشروع يعتمد على المعطيات الدقيقة واتخاذ القرار الذكي
-    </p>
+    <section class="py-24 px-6 md:px-12 bg-cream-base">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-16">
+                <div class="space-y-4">
+                    <div class="w-12 h-12 border border-gold-accent flex items-center justify-center rounded-lg rotate-45 mb-8">
+                        <div class="rotate-[-45deg] text-gold-accent font-serif-ar text-xl">٠١</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-royal-blue">معايير انتقائية</h3>
+                    <p class="text-royal-blue/70 leading-relaxed">لا نعرض كل شيء، بل نختار فقط العقارات التي تستوفي معاييرنا الصارمة للجودة، الموقع، والجمالية المعمارية.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-12 h-12 border border-gold-accent flex items-center justify-center rounded-lg rotate-45 mb-8">
+                        <div class="rotate-[-45deg] text-gold-accent font-serif-ar text-xl">٠٢</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-royal-blue">شفافية المعطيات</h3>
+                    <p class="text-royal-blue/70 leading-relaxed">نقدم تحليلاً دقيقاً للسوق وتوقعات القيمة المستقبلية، لتمكينكم من اتخاذ قرارات مبنية على وضوح تام.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-12 h-12 border border-gold-accent flex items-center justify-center rounded-lg rotate-45 mb-8">
+                        <div class="rotate-[-45deg] text-gold-accent font-serif-ar text-xl">٠٣</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-royal-blue">مرافقة شخصية</h3>
+                    <p class="text-royal-blue/70 leading-relaxed">تجربة رقمية ذكية مدعومة بخبرة بشرية رفيعة المستوى، تضمن لكم الوصول إلى الفرص قبل عرضها في السوق العام.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="buttons">
-      <a class="phone" href="tel:+212649989742">📞 اتصال</a>
-      <a class="whatsapp" href="https://wa.me/212649989742">💬 واتساب</a>
-    </div>
-  </div>
+    <section class="py-24 px-6 md:px-12 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gold-accent/5 rounded-full -mr-32 -mt-32"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-4xl font-serif-ar text-royal-blue mb-4">فرص مختارة بعناية</h2>
+                    <p class="text-gold-accent font-light">مجموعة حصرية من العقارات الأكثر طلباً هذا الموسم</p>
+                </div>
+                <a href="#" class="hidden md:block text-royal-blue border-b border-gold-accent pb-1 text-sm hover:text-gold-accent transition-all">مشاهدة المجموعة الكاملة</a>
+            </div>
 
-  <!-- صورتك -->
-  <img src="faysal.PNG" class="hero-img">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="property-card group cursor-pointer bg-cream-base rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-gold-accent/30">
+                    <div class="h-80 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000&auto=format&fit=crop" alt="Villa" class="property-img w-full h-full object-cover transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-royal-blue/80 backdrop-blur-md text-white text-[10px] px-3 py-1 rounded-full uppercase tracking-tighter">موقع مطلوب</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-royal-blue">فيلا الأندلس</h4>
+                            <span class="text-gold-accent font-bold">12,500,000 DH</span>
+                        </div>
+                        <p class="text-sm text-royal-blue/60 mb-6">مراكش، الحي الشتوي - تصميم يدمج بين الحداثة واللمسة المغربية الأصيلة.</p>
+                        <div class="flex gap-4 border-t border-royal-blue/5 pt-6 text-[11px] text-royal-blue/80">
+                            <span class="flex items-center gap-1 font-medium">٨٠٠ م²</span>
+                            <span class="flex items-center gap-1 font-medium">٥ غرف</span>
+                            <span class="flex items-center gap-1 font-medium">مسبح خاص</span>
+                        </div>
+                    </div>
+                </div>
 
-</div>
+                <div class="property-card group cursor-pointer bg-cream-base rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-gold-accent/30">
+                    <div class="h-80 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop" alt="Penthouse" class="property-img w-full h-full object-cover transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-gold-accent text-royal-blue text-[10px] px-3 py-1 font-bold rounded-full uppercase tracking-tighter">اختيار مدروس</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-royal-blue">بنتهاوس الأفق</h4>
+                            <span class="text-gold-accent font-bold">8,900,000 DH</span>
+                        </div>
+                        <p class="text-sm text-royal-blue/60 mb-6">الدار البيضاء، كازا أنفا - إطلالة بانورامية على المحيط وتجهيزات ذكية بالكامل.</p>
+                        <div class="flex gap-4 border-t border-royal-blue/5 pt-6 text-[11px] text-royal-blue/80">
+                            <span class="flex items-center gap-1 font-medium">٣٢٠ م²</span>
+                            <span class="flex items-center gap-1 font-medium">٣ غرف</span>
+                            <span class="flex items-center gap-1 font-medium">تراس بانورامي</span>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="property-card group cursor-pointer bg-cream-base rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-gold-accent/30">
+                    <div class="h-80 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1600607687940-4e5a994e5373?q=80&w=1000&auto=format&fit=crop" alt="Villa" class="property-img w-full h-full object-cover transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-royal-blue/80 backdrop-blur-md text-white text-[10px] px-3 py-1 rounded-full uppercase tracking-tighter">قيمة واضحة</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-royal-blue">جوهرة الجبل</h4>
+                            <span class="text-gold-accent font-bold">15,000,000 DH</span>
+                        </div>
+                        <p class="text-sm text-royal-blue/60 mb-6">طنجة، الجبل الكبير - خصوصية تامة في أرقى أحياء عروس الشمال.</p>
+                        <div class="flex gap-4 border-t border-royal-blue/5 pt-6 text-[11px] text-royal-blue/80">
+                            <span class="flex items-center gap-1 font-medium">١٢٠٠ م²</span>
+                            <span class="flex items-center gap-1 font-medium">٦ غرف</span>
+                            <span class="flex items-center gap-1 font-medium">حديقة غناء</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-royal-blue py-24 px-6 md:px-12 text-cream-base relative">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+            <div class="md:w-1/2">
+                <span class="text-gold-accent uppercase text-xs tracking-widest mb-4 block">بيانات خلف الجمال</span>
+                <h2 class="text-4xl font-serif-ar mb-6 leading-snug">تحليل دقيق للسوق <br/> لاتخاذ قرارك بثقة</h2>
+                <p class="text-cream-base/70 leading-relaxed mb-8">
+                    في تمغربيت، نؤمن أن شراء العقار هو استثمار في المستقبل. لذلك، نوفر لك أدوات تحليلية متطورة تمنحك صورة واضحة عن اتجاهات الأسعار، نمو المنطقة، والقيمة الاستثمارية لكل عقار نعرضه.
+                </p>
+                <ul class="space-y-4 mb-10 text-sm">
+                    <li class="flex items-center gap-3">
+                        <div class="w-1.5 h-1.5 rounded-full bg-gold-accent"></div>
+                        توقعات القيمة العقارية لخمس سنوات قادمة
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-1.5 h-1.5 rounded-full bg-gold-accent"></div>
+                        مقارنة الأسعار مع عقارات مماثلة في نفس المنطقة
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div class="w-1.5 h-1.5 rounded-full bg-gold-accent"></div>
+                        تقييم دقيق لجودة البناء والمواد المستخدمة
+                    </li>
+                </ul>
+                <button class="bg-gold-accent text-royal-blue px-8 py-4 rounded-full font-bold hover:scale-105 transition-all">طلب تقرير تحليلي</button>
+            </div>
+            <div class="md:w-1/2 w-full">
+                <div class="relative bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
+                    <div class="flex justify-between items-center mb-10">
+                        <div class="text-xl font-serif-ar">مؤشر قيمة "حي النخيل"</div>
+                        <div class="text-gold-accent text-sm">تحديث: أبريل ٢٠٢٦</div>
+                    </div>
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between text-xs mb-2">
+                                <span>الطلب الحالي</span>
+                                <span class="text-gold-accent">عالي جداً</span>
+                            </div>
+                            <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-gold-accent w-[85%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-2">
+                                <span>العائد الإيجاري</span>
+                                <span class="text-gold-accent">٧.٤٪ سنوياً</span>
+                            </div>
+                            <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-gold-accent w-[70%]"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                            <p class="text-[10px] text-white/50 mb-1">توصية تمغربيت</p>
+                            <p class="text-sm font-medium">"موقع استراتيجي مرشح لزيادة في القيمة بنسبة ١٢٪ مع متم السنة."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 md:px-12 text-center bg-cream-base overflow-hidden">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl font-serif-ar text-royal-blue mb-8">انضم إلى نخبة ملاك العقار في المغرب</h2>
+            <p class="text-royal-blue/70 mb-12">اترك لنا تفضيلاتك، وسيقوم مستشارونا الخبراء برسم مسار بحث مخصص يلبي تطلعاتك الأكثر دقة.</p>
+            <form class="flex flex-col md:flex-row gap-4">
+                <input type="email" placeholder="البريد الإلكتروني" class="flex-1 bg-white border border-gold-accent/20 px-8 py-4 rounded-full outline-none focus:border-gold-accent text-royal-blue">
+                <button class="bg-royal-blue text-white px-10 py-4 rounded-full hover:bg-gold-accent hover:text-royal-blue transition-all duration-300">ابدأ الرحلة</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-deep-blue text-cream-base/50 py-16 px-6 md:px-12 border-t border-gold-accent/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <h2 class="text-3xl font-serif-ar text-gold-accent mb-6">تمغربيت</h2>
+                    <p class="text-sm leading-relaxed mb-6">المنصة المرجعية للعقارات الفاخرة والفرص المختارة في المملكة المغربية.</p>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 rounded-full border border-gold-accent/30 flex items-center justify-center hover:bg-gold-accent transition-all cursor-pointer">
+                            <span class="text-[10px]">IN</span>
+                        </div>
+                        <div class="w-8 h-8 rounded-full border border-gold-accent/30 flex items-center justify-center hover:bg-gold-accent transition-all cursor-pointer">
+                            <span class="text-[10px]">IG</span>
+                        </div>
+                        <div class="w-8 h-8 rounded-full border border-gold-accent/30 flex items-center justify-center hover:bg-gold-accent transition-all cursor-pointer">
+                            <span class="text-[10px]">FB</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">الوجهات</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-gold-accent">مراكش</a></li>
+                        <li><a href="#" class="hover:text-gold-accent">الدار البيضاء</a></li>
+                        <li><a href="#" class="hover:text-gold-accent">طنجة</a></li>
+                        <li><a href="#" class="hover:text-gold-accent">الرباط</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">الخدمات</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-gold-accent">اقتناء العقار</a></li>
+                        <li><a href="#" class="hover:text-gold-accent">تحليل السوق</a></li>
+                        <li><a href="#" class="hover:text-gold-accent">الاستثمار العقاري</a></li>
+                        <li><a href="#" class="hover:text-gold-accent">إدارة الأصول</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">تواصل</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li>شارع محمد الخامس، جليز</li>
+                        <li>مراكش، المغرب</li>
+                        <li>contact@tamghrabayt.ma</li>
+                        <li>+212 5XX XX XX XX</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest">
+                <p>© ٢٠٢٦ تمغربيت للعقار. جميع الحقوق محفوظة.</p>
+                <div class="flex gap-8">
+                    <a href="#">سياسة الخصوصية</a>
+                    <a href="#">الشروط والأحكام</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth reveal on scroll logic
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
