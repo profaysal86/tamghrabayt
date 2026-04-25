@@ -1,152 +1,157 @@
-<!-- Source reference: :contentReference[oaicite:0]{index=0} -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TAMGHRABAYT</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    .heading { font-family: 'Playfair Display', serif; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تمغربيت</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+  background: #0f2027;
+  color: white;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+  background:
+    linear-gradient(rgba(10,20,30,0.85), rgba(10,20,30,0.95)),
+    url('hero.png') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* النص */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 550px;
+  text-align: right;
+}
+
+/* العنوان */
+h1 {
+  font-size: 52px;
+  margin-bottom: 10px;
+  color: #f5c16c;
+}
+
+/* النص */
+p {
+  font-size: 18px;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+/* الأزرار */
+.buttons {
+  margin-top: 20px;
+}
+
+.buttons a {
+  display: inline-block;
+  margin: 5px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  transition: 0.3s;
+}
+
+.phone { background: #007BFF; }
+.whatsapp { background: #25D366; }
+
+.buttons a:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* صورتك */
+.hero-img {
+  position: absolute;
+  bottom: 0;
+  right: 8%;
+  width: 380px;
+  opacity: 0.95;
+
+  /* دمج الصورة مع الخلفية */
+  mask-image: linear-gradient(to top, transparent 10%, black 65%);
+  -webkit-mask-image: linear-gradient(to top, transparent 10%, black 65%);
+
+  filter: brightness(0.95) contrast(1.05);
+
+  transform: translateY(80px);
+  animation: riseUp 1.5s ease forwards;
+}
+
+/* animation */
+@keyframes riseUp {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* الموبايل */
+@media (max-width: 768px) {
+
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-img {
+    position: relative;
+    width: 240px;
+    right: auto;
+    margin-top: 20px;
+    transform: translateY(80px);
+  }
+
+  .content {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+}
+
+</style>
 </head>
 
-<body class="bg-neutral-950 text-neutral-200">
+<body>
 
-<!-- NAV -->
-<header class="absolute w-full z-20">
-  <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-    <div class="text-xl tracking-widest heading">TAMGHRABAYT</div>
-    <nav class="hidden md:flex gap-10 text-sm opacity-70">
-      <a href="#" class="hover:opacity-100">Vision</a>
-      <a href="#" class="hover:opacity-100">Selections</a>
-      <a href="#" class="hover:opacity-100">Insights</a>
-      <a href="#" class="hover:opacity-100">Contact</a>
-    </nav>
-  </div>
-</header>
+<div class="hero">
 
-<!-- HERO -->
-<section class="relative h-screen flex items-center">
-  <div class="absolute inset-0">
-    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="w-full h-full object-cover opacity-40"/>
-  </div>
+  <!-- النص -->
+  <div class="content">
+    <h1>تمغربيت</h1>
 
-  <div class="relative max-w-7xl mx-auto px-6">
-    <div class="max-w-2xl">
-      <h1 class="heading text-5xl md:text-6xl leading-tight mb-6">
-        A refined layer<br/>between you<br/>and the market
-      </h1>
-      <p class="opacity-70 mb-8">
-        TAMGHRABAYT curates Moroccan real estate with precision, clarity, and restraint. No noise. Only signal.
-      </p>
-      <button class="px-6 py-3 border border-white/30 hover:border-white transition">
-        Explore selections
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- STATEMENT -->
-<section class="py-24 border-t border-white/10">
-  <div class="max-w-5xl mx-auto px-6 text-center">
-    <p class="heading text-3xl leading-relaxed">
-      We don’t list properties.<br/>
-      We filter reality.
+    <p>
+      منصة عقارية قيد الإنشاء بمدينة القنيطرة<br>
+      نعمل على تطوير أدوات للتحليل العقاري ومواكبة المستثمرين<br>
+      مشروع يعتمد على المعطيات الدقيقة واتخاذ القرار الذكي
     </p>
+
+    <div class="buttons">
+      <a class="phone" href="tel:+212649989742">📞 اتصال</a>
+      <a class="whatsapp" href="https://wa.me/212649989742">💬 واتساب</a>
+    </div>
   </div>
-</section>
 
-<!-- FEATURED GRID -->
-<section class="py-24">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+  <!-- صورتك -->
+  <img src="faysal.PNG" class="hero-img">
 
-    <div class="group">
-      <div class="overflow-hidden mb-4">
-        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705" class="w-full h-80 object-cover group-hover:scale-105 transition duration-700"/>
-      </div>
-      <h3 class="heading text-xl mb-2">Kenitra Residence</h3>
-      <p class="text-sm opacity-60">Strategic positioning. Real demand.</p>
-    </div>
-
-    <div class="group md:mt-16">
-      <div class="overflow-hidden mb-4">
-        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811" class="w-full h-80 object-cover group-hover:scale-105 transition duration-700"/>
-      </div>
-      <h3 class="heading text-xl mb-2">Rabat Apartment</h3>
-      <p class="text-sm opacity-60">Urban calm. Verified metrics.</p>
-    </div>
-
-    <div class="group">
-      <div class="overflow-hidden mb-4">
-        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae" class="w-full h-80 object-cover group-hover:scale-105 transition duration-700"/>
-      </div>
-      <h3 class="heading text-xl mb-2">Coastal Villa</h3>
-      <p class="text-sm opacity-60">Lifestyle meets capital logic.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- INSIGHT BLOCK -->
-<section class="py-24 bg-white text-neutral-900">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-
-    <div>
-      <h2 class="heading text-4xl mb-6">
-        Data before emotion
-      </h2>
-      <p class="opacity-70 mb-6">
-        Every property passes through a structured lens: demand, liquidity, legal clarity, and pricing integrity.
-      </p>
-      <button class="border border-neutral-900 px-6 py-3 hover:bg-neutral-900 hover:text-white transition">
-        Read insights
-      </button>
-    </div>
-
-    <div class="grid grid-cols-2 gap-6 text-sm">
-      <div>
-        <p class="text-3xl heading mb-2">+82%</p>
-        <p class="opacity-60">Demand clarity</p>
-      </div>
-      <div>
-        <p class="text-3xl heading mb-2">Top 12%</p>
-        <p class="opacity-60">Market filtering</p>
-      </div>
-      <div>
-        <p class="text-3xl heading mb-2">0 Noise</p>
-        <p class="opacity-60">No mass listings</p>
-      </div>
-      <div>
-        <p class="text-3xl heading mb-2">100%</p>
-        <p class="opacity-60">Verified context</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="py-32 text-center">
-  <div class="max-w-3xl mx-auto px-6">
-    <h2 class="heading text-4xl mb-6">
-      Enter the filtered market
-    </h2>
-    <p class="opacity-60 mb-10">
-      Access a curated layer designed for clarity, not volume.
-    </p>
-    <button class="px-8 py-4 border border-white/30 hover:border-white transition">
-      Request access
-    </button>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="py-10 border-t border-white/10 text-center text-sm opacity-50">
-  TAMGHRABAYT / تمغربيت — Morocco
-</footer>
+</div>
 
 </body>
 </html>
