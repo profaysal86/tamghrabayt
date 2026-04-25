@@ -1,517 +1,261 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="تمغربيت - تحليل عقاري ذكي يساعدك تختار العقار المناسب لك قبل الشراء">
-<title>تمغربيت | منصة عقارية ذكية</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  :root {
-    --gold: #C9A84C;
-    --gold-light: #E8C97A;
-    --gold-dim: rgba(201,168,76,0.18);
-    --green: #25D366;
-    --green-dark: #1aad53;
-    --blue: #2563EB;
-    --blue-dark: #1d4ed8;
-    --yellow: #F59E0B;
-    --yellow-dark: #D97706;
-    --white: #FFFFFF;
-    --cream: #F9F4EC;
-    --text-main: #F0EAD6;
-    --text-sub: rgba(240,234,214,0.75);
-    --overlay-start: rgba(5,10,20,0.55);
-    --overlay-end: rgba(5,10,20,0.82);
-  }
-
-  html, body {
-    min-height: 100%;
-    font-family: 'Cairo', 'Tajawal', sans-serif;
-    background: #050A14;
-    color: var(--white);
-    overflow-x: hidden;
-  }
-
-  /* ─── Hero Section ─── */
-  .hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem 1.25rem 3rem;
-    overflow: hidden;
-  }
-
-  /* Animated background using CSS gradient (placeholder for image) */
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1800&q=80') center center / cover no-repeat;
-    transform: scale(1.05);
-    animation: bgZoom 20s ease-in-out infinite alternate;
-    z-index: 0;
-  }
-
-  @keyframes bgZoom {
-    from { transform: scale(1.05); }
-    to   { transform: scale(1.12); }
-  }
-
-  /* Gradient overlay */
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      170deg,
-      var(--overlay-start) 0%,
-      rgba(5,10,20,0.70) 40%,
-      var(--overlay-end) 100%
-    );
-    z-index: 1;
-  }
-
-  /* Decorative radial glow */
-  .hero-glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 70% 55% at 50% 40%, rgba(201,168,76,0.12) 0%, transparent 70%);
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 10;
-    max-width: 780px;
-    width: 100%;
-    animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(36px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ─── Logo / Badge ─── */
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--gold-dim);
-    border: 1px solid rgba(201,168,76,0.35);
-    border-radius: 50px;
-    padding: 0.35rem 1rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--gold-light);
-    letter-spacing: 0.06em;
-    margin-bottom: 1.6rem;
-    backdrop-filter: blur(6px);
-    animation: fadeUp 1s 0.1s cubic-bezier(0.22,1,0.36,1) both;
-  }
-  .badge-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--gold);
-    box-shadow: 0 0 6px var(--gold);
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%,100% { opacity:1; box-shadow:0 0 6px var(--gold); }
-    50%      { opacity:0.5; box-shadow:0 0 2px var(--gold); }
-  }
-
-  /* ─── Title ─── */
-  .hero-title {
-    font-family: 'Tajawal', sans-serif;
-    font-size: clamp(3.2rem, 10vw, 6.5rem);
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    color: var(--white);
-    margin-bottom: 0.3rem;
-    animation: fadeUp 1s 0.2s cubic-bezier(0.22,1,0.36,1) both;
-    text-shadow: 0 2px 40px rgba(0,0,0,0.5);
-  }
-
-  .hero-title span {
-    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 60%, #a07830 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* ─── Divider ─── */
-  .divider {
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 1.1rem auto 1.5rem;
-    border-radius: 2px;
-    animation: fadeUp 1s 0.3s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  /* ─── Subtitle ─── */
-  .hero-subtitle {
-    font-size: clamp(1.05rem, 2.8vw, 1.35rem);
-    font-weight: 400;
-    color: var(--text-main);
-    line-height: 1.75;
-    max-width: 600px;
-    margin: 0 auto 0.6rem;
-    animation: fadeUp 1s 0.35s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  .hero-tagline {
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
-    font-weight: 500;
-    color: var(--gold-light);
-    opacity: 0.9;
-    margin-bottom: 2.5rem;
-    animation: fadeUp 1s 0.45s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  /* ─── Buttons ─── */
-  .btn-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 2.5rem;
-    animation: fadeUp 1s 0.55s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.85rem 1.8rem;
-    border-radius: 10px;
-    font-family: 'Cairo', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
-    white-space: nowrap;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0);
-    transition: background 0.18s ease;
-    border-radius: inherit;
-  }
-
-  .btn:hover::after {
-    background: rgba(255,255,255,0.12);
-  }
-
-  .btn:hover {
-    transform: translateY(-3px);
-  }
-  .btn:active {
-    transform: translateY(0px);
-  }
-
-  /* WhatsApp */
-  .btn-whatsapp {
-    background: linear-gradient(135deg, #25D366 0%, #1aad53 100%);
-    color: #fff;
-    box-shadow: 0 6px 24px rgba(37,211,102,0.38);
-  }
-  .btn-whatsapp:hover {
-    box-shadow: 0 10px 32px rgba(37,211,102,0.52);
-    filter: brightness(1.06);
-  }
-
-  /* Call */
-  .btn-call {
-    background: linear-gradient(135deg, #3B82F6 0%, #1d4ed8 100%);
-    color: #fff;
-    box-shadow: 0 6px 24px rgba(59,130,246,0.38);
-  }
-  .btn-call:hover {
-    box-shadow: 0 10px 32px rgba(59,130,246,0.52);
-    filter: brightness(1.06);
-  }
-
-  /* Links */
-  .btn-links {
-    background: linear-gradient(135deg, #FBBF24 0%, #D97706 100%);
-    color: #1a0f00;
-    box-shadow: 0 6px 24px rgba(251,191,36,0.38);
-  }
-  .btn-links:hover {
-    box-shadow: 0 10px 32px rgba(251,191,36,0.52);
-    filter: brightness(1.06);
-  }
-
-  .btn svg {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-  }
-
-  /* ─── Contact strip ─── */
-  .contact-strip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 10px;
-    padding: 0.75rem 1.5rem;
-    backdrop-filter: blur(8px);
-    animation: fadeUp 1s 0.65s cubic-bezier(0.22,1,0.36,1) both;
-  }
-
-  .contact-label {
-    font-size: 0.88rem;
-    color: var(--text-sub);
-    font-weight: 400;
-  }
-
-  .contact-number {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--gold-light);
-    letter-spacing: 0.04em;
-    direction: ltr;
-  }
-
-  .contact-icon {
-    width: 18px; height: 18px;
-    color: var(--gold);
-    flex-shrink: 0;
-  }
-
-  /* ─── Floating decorative lines ─── */
-  .deco-line {
-    position: absolute;
-    pointer-events: none;
-    z-index: 3;
-  }
-  .deco-line-1 {
-    top: 12%; right: 8%;
-    width: 120px; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4));
-    transform: rotate(-30deg);
-  }
-  .deco-line-2 {
-    bottom: 20%; left: 6%;
-    width: 80px; height: 1px;
-    background: linear-gradient(90deg, rgba(201,168,76,0.3), transparent);
-    transform: rotate(20deg);
-  }
-  .deco-corner {
-    position: absolute;
-    width: 60px; height: 60px;
-    border-color: rgba(201,168,76,0.25);
-    border-style: solid;
-    z-index: 3;
-    pointer-events: none;
-  }
-  .deco-corner-tl { top: 5%; right: 5%; border-width: 2px 0 0 2px; border-radius: 4px 0 0 0; }
-  .deco-corner-br { bottom: 8%; left: 4%; border-width: 0 2px 2px 0; border-radius: 0 0 4px 0; }
-
-  /* ─── Stats row ─── */
-  .stats-row {
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    margin-top: 2.8rem;
-    flex-wrap: wrap;
-    animation: fadeUp 1s 0.75s cubic-bezier(0.22,1,0.36,1) both;
-  }
-  .stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.15rem;
-  }
-  .stat-num {
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: var(--gold-light);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    color: var(--text-sub);
-    font-weight: 400;
-  }
-  .stat-sep {
-    width: 1px;
-    background: rgba(255,255,255,0.15);
-    align-self: stretch;
-  }
-
-  /* ─── Scroll indicator ─── */
-  .scroll-hint {
-    position: absolute;
-    bottom: 1.8rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-    opacity: 0.5;
-    animation: fadeUp 1.2s 1s cubic-bezier(0.22,1,0.36,1) both;
-  }
-  .scroll-hint span {
-    font-size: 0.7rem;
-    color: var(--text-sub);
-    letter-spacing: 0.1em;
-  }
-  .scroll-arrow {
-    width: 18px; height: 18px;
-    border-right: 2px solid var(--gold);
-    border-bottom: 2px solid var(--gold);
-    transform: rotate(45deg);
-    animation: scrollBounce 1.6s ease-in-out infinite;
-  }
-  @keyframes scrollBounce {
-    0%,100% { transform: rotate(45deg) translateY(0); }
-    50%      { transform: rotate(45deg) translateY(6px); }
-  }
-
-  /* ─── Responsive ─── */
-  @media (max-width: 600px) {
-    .hero { padding: 2rem 1rem 4rem; }
-    .btn { padding: 0.8rem 1.3rem; font-size: 0.95rem; }
-    .btn-group { gap: 0.75rem; }
-    .stats-row { gap: 1.2rem; }
-    .stat-sep { display: none; }
-    .deco-corner-tl, .deco-corner-br { display: none; }
-    .contact-strip { padding: 0.65rem 1rem; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamghrabayt - عقارك في القنيطرة والمغرب بثقة</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; }
+    .hero-bg {
+      background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://picsum.photos/id/1015/2000/1200');
+      background-size: cover;
+      background-position: center;
+    }
+    .masonry {
+      column-count: 1;
+      column-gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .masonry { column-count: 2; }
+    }
+    @media (min-width: 1024px) {
+      .masonry { column-count: 3; }
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+    }
+    .gold-accent { color: #d4af37; }
+  </style>
 </head>
-<body>
+<body class="bg-[#f8f4ed] text-gray-800">
 
-<section class="hero" aria-label="الصفحة الرئيسية">
-
-  <!-- Background image -->
-  <div class="hero-bg" role="img" aria-label="خلفية عقارية"></div>
-
-  <!-- Overlays -->
-  <div class="hero-overlay"></div>
-  <div class="hero-glow"></div>
-
-  <!-- Decorative elements -->
-  <div class="deco-line deco-line-1"></div>
-  <div class="deco-line deco-line-2"></div>
-  <div class="deco-corner deco-corner-tl"></div>
-  <div class="deco-corner deco-corner-br"></div>
-
-  <!-- Main content -->
-  <div class="hero-content">
-
-    <!-- Badge -->
-    <div class="badge">
-      <span class="badge-dot"></span>
-      منصة عقارية مغربية رائدة
-    </div>
-
-    <!-- Title -->
-    <h1 class="hero-title"><span>تمغربيت</span></h1>
-
-    <!-- Divider -->
-    <div class="divider"></div>
-
-    <!-- Subtitle -->
-    <p class="hero-subtitle">
-      تحليل عقاري ذكي يساعدك تختار العقار المناسب لك قبل الشراء
-    </p>
-    <p class="hero-tagline">موقع عقاري شامل برؤية مختلفة</p>
-
-    <!-- CTA Buttons -->
-    <div class="btn-group" role="group" aria-label="وسائل التواصل">
-
-      <!-- WhatsApp -->
-      <a href="https://wa.me/212649989742" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="تواصل عبر واتساب">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        واتساب
-      </a>
-
-      <!-- Call -->
-      <a href="tel:+212649989742" class="btn btn-call" aria-label="اتصال مباشر">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.0 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-        </svg>
-        اتصال مباشر
-      </a>
-
-      <!-- Links -->
-      <a href="https://linktr.ee/Tamghrabayt" class="btn btn-links" target="_blank" rel="noopener noreferrer" aria-label="جميع الروابط">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
-          <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
-        </svg>
-        جميع الروابط
-      </a>
-
-    </div>
-
-    <!-- Contact strip -->
-    <div class="contact-strip" role="complementary" aria-label="بيانات الاتصال">
-      <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.0 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-      </svg>
-      <span class="contact-label">للاستفسار أو الزيارة:</span>
-      <a href="tel:+212649989742" class="contact-number" dir="ltr">+212 649 989 742</a>
-    </div>
-
-    <!-- Stats -->
-    <div class="stats-row" role="list" aria-label="إحصائيات المنصة">
-      <div class="stat" role="listitem">
-        <span class="stat-num">+500</span>
-        <span class="stat-label">عقار محلل</span>
+  <!-- Navbar -->
+  <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-emerald-700 rounded-xl flex items-center justify-center text-white font-bold text-2xl">ت</div>
+        <div>
+          <span class="text-2xl font-bold tracking-tight">تمغربيت</span>
+          <p class="text-xs text-gray-500 -mt-1">عقار بثقة</p>
+        </div>
       </div>
-      <div class="stat-sep" aria-hidden="true"></div>
-      <div class="stat" role="listitem">
-        <span class="stat-num">+50</span>
-        <span class="stat-label">مدينة مغربية</span>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#" class="hover:text-emerald-700 transition">الرئيسية</a>
+        <a href="#" class="hover:text-emerald-700 transition">عقارات للبيع</a>
+        <a href="#" class="hover:text-emerald-700 transition">استثمار</a>
+        <a href="#" class="hover:text-emerald-700 transition">من نحن</a>
       </div>
-      <div class="stat-sep" aria-hidden="true"></div>
-      <div class="stat" role="listitem">
-        <span class="stat-num">100%</span>
-        <span class="stat-label">تحليل موثوق</span>
+      <a href="https://wa.me/+212649989742" target="_blank" 
+         class="bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3 rounded-2xl flex items-center gap-2 font-medium transition">
+        <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-bg h-screen flex items-center text-white">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+        عقارك المثالي في <span class="text-emerald-300">القنيطرة</span><br>والمغرب بثقة تامة
+      </h1>
+      <p class="text-xl md:text-2xl max-w-2xl mx-auto mb-10 opacity-90">
+        صور احترافية • جولات افتراضية • معاملات شفافة • استثمار آمن
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#search" 
+           class="bg-white text-emerald-800 hover:bg-emerald-100 px-10 py-4 rounded-3xl font-semibold text-lg transition flex items-center justify-center gap-3">
+          ابحث عن عقار الآن
+          <i class="fas fa-search"></i>
+        </a>
+        <a href="https://wa.me/+212649989742" target="_blank"
+           class="border-2 border-white hover:bg-white hover:text-emerald-800 px-10 py-4 rounded-3xl font-semibold text-lg transition flex items-center justify-center gap-3">
+          أضف عقارك للبيع
+        </a>
+      </div>
+
+      <div class="mt-16 flex justify-center gap-10 text-sm">
+        <div class="flex items-center gap-2">
+          <i class="fas fa-camera text-emerald-300"></i>
+          <span>صور احترافية</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fas fa-vr-cardboard text-emerald-300"></i>
+          <span>جولات 360°</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fas fa-shield-alt text-emerald-300"></i>
+          <span>مُتحقق منه</span>
+        </div>
       </div>
     </div>
+  </header>
 
+  <!-- Search Bar -->
+  <div id="search" class="max-w-6xl mx-auto -mt-10 relative z-10 px-6">
+    <div class="bg-white rounded-3xl shadow-2xl p-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">المدينة / الحي</label>
+          <select class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-emerald-600">
+            <option>القنيطرة</option>
+            <option>الرباط</option>
+            <option>طنجة</option>
+            <option>مراكش</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">نوع العقار</label>
+          <select class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-emerald-600">
+            <option>فيلا</option>
+            <option>شقة</option>
+            <option>أرض</option>
+            <option>محل تجاري</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">السعر (درهم)</label>
+          <input type="text" placeholder="من - إلى" 
+                 class="w-full border border-gray-300 rounded-2xl px-5 py-4 focus:outline-none focus:border-emerald-600">
+        </div>
+        <div class="flex items-end">
+          <button onclick="alert('جاري البحث... (ستضيف الـ JS لاحقاً)')" 
+                  class="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-4 rounded-3xl font-semibold transition flex items-center justify-center gap-2">
+            <i class="fas fa-search"></i>
+            ابحث
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Scroll hint -->
-  <div class="scroll-hint" aria-hidden="true">
-    <span>اكتشف المزيد</span>
-    <div class="scroll-arrow"></div>
-  </div>
+  <!-- Featured Properties -->
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="flex justify-between items-end mb-10">
+      <div>
+        <span class="text-emerald-700 font-medium">مختارة لك</span>
+        <h2 class="text-4xl font-bold">عقارات مميزة في القنيطرة</h2>
+      </div>
+      <a href="#" class="text-emerald-700 hover:underline flex items-center gap-2">
+        عرض الكل <i class="fas fa-arrow-left"></i>
+      </a>
+    </div>
 
-</section>
+    <!-- Masonry Grid -->
+    <div class="masonry">
+      <!-- Property Card 1 -->
+      <div class="masonry-item bg-white rounded-3xl overflow-hidden shadow-lg">
+        <img src="https://picsum.photos/id/1015/600/400" alt="فيلا" class="w-full h-64 object-cover">
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-emerald-700 font-semibold text-lg">2,450,000 درهم</p>
+              <p class="text-gray-600">فيلا فاخرة • 4 غرف • 280 م²</p>
+            </div>
+            <span class="bg-emerald-100 text-emerald-700 text-xs px-3 py-1 rounded-full">مُتحقق</span>
+          </div>
+          <p class="text-sm text-gray-500 mt-3">حي الرياض، القنيطرة</p>
+          <button onclick="window.open('https://wa.me/+212649989742?text=مهتم%20بالفيلا%20في%20الرياض','_blank')" 
+                  class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-3 rounded-2xl text-sm font-medium transition">
+            تواصل مع فيصل
+          </button>
+        </div>
+      </div>
 
+      <!-- Property Card 2 -->
+      <div class="masonry-item bg-white rounded-3xl overflow-hidden shadow-lg">
+        <img src="https://picsum.photos/id/133/600/500" alt="شقة" class="w-full h-64 object-cover">
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-emerald-700 font-semibold text-lg">980,000 درهم</p>
+              <p class="text-gray-600">شقة حديثة • 3 غرف • 145 م²</p>
+            </div>
+            <span class="bg-amber-100 text-amber-700 text-xs px-3 py-1 rounded-full">استثمار</span>
+          </div>
+          <p class="text-sm text-gray-500 mt-3">وسط المدينة، القنيطرة</p>
+          <button onclick="window.open('https://wa.me/+212649989742?text=مهتم%20بالشقة%20في%20وسط%20المدينة','_blank')" 
+                  class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-3 rounded-2xl text-sm font-medium transition">
+            تواصل مع فيصل
+          </button>
+        </div>
+      </div>
+
+      <!-- Property Card 3 -->
+      <div class="masonry-item bg-white rounded-3xl overflow-hidden shadow-lg">
+        <img src="https://picsum.photos/id/201/600/380" alt="أرض" class="w-full h-64 object-cover">
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-emerald-700 font-semibold text-lg">1,850,000 درهم</p>
+              <p class="text-gray-600">أرض سكنية • 1200 م²</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500 mt-3">ضواحي القنيطرة</p>
+          <button onclick="window.open('https://wa.me/+212649989742?text=مهتم%20بالأرض','_blank')" 
+                  class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-3 rounded-2xl text-sm font-medium transition">
+            تواصل مع فيصل
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust & Contact -->
+  <section class="bg-white py-20">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-4">لماذا تختار تمغربيت؟</h2>
+      <p class="max-w-md mx-auto text-gray-600 mb-12">
+        فيصل من تمغربيت يقدم لك تجربة عقارية مختلفة: صور احترافية، شفافية كاملة، ودعم شخصي.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div class="text-center">
+          <i class="fas fa-camera text-5xl text-emerald-600 mb-4"></i>
+          <h3 class="font-semibold">تصوير احترافي</h3>
+          <p class="text-sm text-gray-500">صور عالية الجودة + جولات افتراضية</p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-handshake text-5xl text-emerald-600 mb-4"></i>
+          <h3 class="font-semibold">معاملات موثوقة</h3>
+          <p class="text-sm text-gray-500">دعم قانوني وشفافية كاملة</p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-map-marker-alt text-5xl text-emerald-600 mb-4"></i>
+          <h3 class="font-semibold">معرفة محلية</h3>
+          <p class="text-sm text-gray-500">خبير في سوق القنيطرة والمغرب</p>
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <a href="https://wa.me/+212649989742" target="_blank"
+           class="inline-flex items-center gap-4 bg-emerald-700 text-white px-10 py-5 rounded-3xl text-xl font-medium hover:bg-emerald-800 transition">
+          <i class="fab fa-whatsapp text-3xl"></i>
+          <div>
+            <span>تواصل مباشرة مع فيصل</span><br>
+            <span class="text-sm opacity-90">+212 649 98 97 42</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="mt-8 text-sm text-gray-500">
+        <a href="https://linktr.ee/Tamghrabayt" target="_blank" class="hover:underline">رابط جميع التواصل →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-6 text-center text-sm">
+      <p>© 2026 تمغربيت - فيصل | عقارات القنيطرة والمغرب</p>
+      <p class="mt-2">صمم بـ ❤️ لتجربة مستخدم استثنائية</p>
+    </div>
+  </footer>
+
+  <script>
+    // Tailwind script already loaded via CDN
+  </script>
 </body>
 </html>
